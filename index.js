@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client(); //initiated Discord Bot
 module.exports = {bot}; //making it avaliable to Message Center
-const TOKEN = 'NzI0OTczNDMwNDExMzYyMzY0.XvILYw.UEYGwXe6V4fRu67nKqbzNts0fsc'; //Bot token. ONLY CHANGE HERE
+const TOKEN = 'NzI0OTczNDMwNDExMzYyMzY0.XvKkLw.6kEj7e3_LDyQhSoXaPRDpprqI7Y'; //Bot token. ONLY CHANGE HERE
 const PREFIX = '!'; //Global across Project. Should be passed through if nescessary.
 const MessageCenter = require('./Bot Code/MessageCenter.js') 
 bot.login(TOKEN);//Logs into Bot account

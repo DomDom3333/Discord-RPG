@@ -39,7 +39,7 @@ function messageHandler(message, PREFIX){
                 break;
         }
     }
-    try {
+   //try {
         bot.commands.get(args[0]).execute(message,args);
         if(args[0] === "help"){
             msg = ""
@@ -48,8 +48,8 @@ function messageHandler(message, PREFIX){
             }
             message.channel.send(msg);
         }
-    }
-    catch(err) {
+    //}
+    //catch(err) {
 
-    }
+    //}
 }

@@ -9,6 +9,8 @@
   "author": "DomDom",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "request": "^2.88.2",
+    "shelljs": "^0.8.4"
   }
 }

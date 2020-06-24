@@ -1,7 +1,7 @@
 let request = require('request');
 let fs = require(`fs`);
 let shelljs = require('shelljs');
-let character = require('characterObject.js');
+let character = require('../characterObject.js');
 
 module.exports = {
     name: 'create',

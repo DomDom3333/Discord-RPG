@@ -5,7 +5,7 @@ module.exports = {
     stats:'',
     load(message,args){
         loadChar(message,args);
-    },
+    }
 }
 
 function save(message,args){

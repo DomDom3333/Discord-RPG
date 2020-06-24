@@ -19,6 +19,7 @@ bot.on('message', message =>{//useless legacy command. Sometimes used for debugg
 bot.on('message', message =>{
     if(message.content[0] === PREFIX){ //check for prefix early to save resources
         if (message.author.bot) return; //ignores itself and other bots
+        if (message.content.length<=1) return;//check for length of message
         MessageCenter.entry(message,PREFIX);
     }
 })

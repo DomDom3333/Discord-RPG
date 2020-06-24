@@ -1,7 +1,7 @@
 module.exports = {
     name: 'leave',
     description: "Leaves a Party or a Game",
-    execute(message,args){
+    execute(message,args){ //second argument tree
         if(args[1] === "party"){
             leaveParty(message,args);
         }
@@ -14,10 +14,10 @@ module.exports = {
     }
 }
 
-function leaveParty(message,args){
+function leaveParty(message,args){ //leaves a party (not yet implimented)
     message.channel.send("You have left the party");
 }
 
-function leaveGame(message,args){
+function leaveGame(message,args){ //leaves a game (not yet implimented)
     message.channel.send("You have left the Game");
 }

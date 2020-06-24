@@ -1,8 +1,9 @@
 //This file is dedicated to taking all messages and sorting them to the according functions accross the bot. ALL messages go through here. This was created to clean up Index.js
 module.exports = {
     entry: function(message, PREFIX) {
+        console.log('New message from "' + message.author.username + '" (ID: ' + message.author.id + ')');
+        console.log("message: " + message.content)
         messageHandler(message, PREFIX);
-        console.log('new message from ' + message.author.id);
     }
 }
 //code outside of functions only runs at init (once).
@@ -25,9 +26,7 @@ function messageHandler(message, PREFIX){
     for (i = 0; i<args.length;i++){//all lowercase for user compatibility
         args[i] = args[i].toLowerCase();
     }
-    console.log("message: " + message.content)
     if (message.author.id === "110596839018856448"){ //ADMIN CONTROLL
-        console.log("check 1 " + args[0]);
         switch (args[0]){
             case 'save':
                 //call function to save current state of Bot
@@ -39,8 +38,8 @@ function messageHandler(message, PREFIX){
                 break;
         }
     }
-   //try {
-        bot.commands.get(args[0]).execute(message,args);
+   try {
+        bot.commands.get(args[0]).execute(message,args);//attempt to run a given command. if it exists
         if(args[0] === "help"){
             msg = ""
             for (i = 0; i < commandList.length; i++){
@@ -48,8 +47,8 @@ function messageHandler(message, PREFIX){
             }
             message.channel.send(msg);
         }
-    //}
-    //catch(err) {
+    }
+    catch(err) {//failover if a command doesnt exist
 
-    //}
+    }
 }

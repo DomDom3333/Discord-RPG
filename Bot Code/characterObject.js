@@ -14,3 +14,6 @@ function save(message,args){
 function loadChar(message,args){
     var dir = './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' // + character/filename
 }
+
+
+//This file is not yet in use. This will be used for opening, saving and editing character files

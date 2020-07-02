@@ -1,23 +1,23 @@
 let request = require('request');
 let fs = require(`fs`);
 let shelljs = require('shelljs');
-let character = require('../characterObject.js');//for later use
+let character = require('../CharacterReader.js');//for later use
 
 module.exports = {
     name: 'create',
     description: "creates a Character,game or Party",
     execute(message,args){
         if(args[1] === "character"){ //second argument tree
-            createCharacter(message,args);
+            return createCharacter(message,args);
         }
         else if (args[1] === "game"){
-            createGame(message,args);
+            return createGame(message,args);
         }
         else if (args[1] === "party"){
-            message.channel.send("Not yet implimented");
+            return ("Not yet implimented");
         }
         else{
-            message.channel.send("Please specify waht you want to create. (Character/Game/Party)")
+            return ("Please specify what you want to create. (Character/Game/Party)")
         }
     }
 }
@@ -32,11 +32,11 @@ function createGame(message, args){ //Creates Directory and fills in the JSON fi
             downloadGame(message,args,dir);
         }
         else{
-            message.channel.send("Please only upload JSON files. All other will be ignored")
+            return ("Please only upload JSON files. All other will be ignored")
         }
     }
     else {
-        message.channel.send("Please add a name for the game (!game create [name]");
+        return ("Please add a name for the game (!game create [name]");
     }
 }
 
@@ -58,7 +58,7 @@ function createCharacter(message,args){//Creates Directory and fills in the JSON
             downloadChar(message,args,dir);
         }
         else{
-            message.channel.send("Please only upload JSON files. All other will be ignored")
+            return ("Please only upload JSON files. All other will be ignored")
         }
     }
 }

@@ -1,0 +1,319 @@
+{
+    "Author": "SomeRandomDM1234",
+    "Creation_Date": "25/12/2021",
+    "version": "0.0.1",
+    "GameID": "SomeRandomlyGeneratedIDThatIsUnlikelyToBeRepeated",
+    "Squares":[//worldmapStuff that we can work out when we get there but we should leave a space here for considderation
+        {
+            "1x1":{
+                "nodes":[ //allows for different node types to be connected
+                    {
+                        "1":{
+                            "nodeID":"0",
+                            "nodeName": "LocationName1",
+                            "nodeType": "Location",
+                            "ObjectPoints": [ //objects can be their own node type with their own properties.
+                                {
+                                    "1":{
+                                        "InUse": "True",
+                                        "connectedTo": "3",
+                                        "ObjectType": "Special", //notes if Object performs special action
+                                        "SpecialCount": "2" //used for state determination
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "4":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "5":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "6":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    }
+                                }
+                            ],
+                            "Modpoints":[//a modpoint allows for modefiers like Combatchances or Lootchances to be attatched
+                                {
+                                    "1":{
+                                        "InUse": "True",
+                                        "connectedTo": "4", //reffers to nodeID of MOD Node
+                                        "ModType": "Loot", //reffers to Mod Type (Loot/Combat)
+                                        "TriggerType": "onSearch"//what action triggers modType
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "connectedTo": "", 
+                                        "ModType": "",
+                                        "TriggerType":""
+                                    },
+                                    "3":{//3 modpoints max (could be expanded later if needed/wanted by us?)
+                                        "InUse": "False",
+                                        "connectedTo": "", 
+                                        "ModType": "",
+                                        "TriggerType":""
+                                    }
+                                }
+                            ], 
+                            "NPCPoints":[//here, NPCs get connected. they count as special (unless imortal)
+                                {//3 max since NPC consume Special Point
+                                    "1":{
+                                        "InUse": "True",
+                                        "ConnectedTo": "7",
+                                        "NPCType": "Animal"
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "ConnectedTo": "",
+                                        "NPCType": ""
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "ConnectedTo": "",
+                                        "NPCType": ""
+                                    }
+                                }
+                            ]
+                        },
+                        "2":{
+                            "nodeID":"1",
+                            "nodeName": "LocationName2",
+                            "nodeType": "Location",
+                            "ObjectPoints":[
+                                {
+                                    "1":{
+                                        "InUse": "Flase",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "4":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "5":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    },
+                                    "6":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": "",
+                                        "SpecialCount": ""
+                                    }
+            
+                                }
+                            ],
+                            "Modpoints":[
+                                {
+                                    "1":{
+                                        "InUse": "True",
+                                        "connectedTo": "6",
+                                        "ModType": "Loot",
+                                        "TriggerType": "onSearch"
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "connectedTo": "", 
+                                        "ModType": "",
+                                        "TriggerType":""
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "connectedTo": "", 
+                                        "ModType": "",
+                                        "TriggerType":""
+                                    }
+                                }
+                            ], 
+                            "NPCPoints":[
+                                {
+                                    "1":{
+                                        "InUse": "True",
+                                        "ConnectedTo": "7",
+                                        "NPCType": "Animal"
+                                    },
+                                    "2":{
+                                        "InUse": "False",
+                                        "ConnectedTo": "",
+                                        "NPCType": ""
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "ConnectedTo": "",
+                                        "NPCType": ""
+                                    }
+                                }
+                                
+                            ]
+                        },
+                        "3":{
+                            "nodeID":"3",
+                            "nodeName": "ObjectNodeName",
+                            "nodeType": "Object",
+                            "ObjectID": "0", //each object needs unique id in game
+                            "Name": "Dresser",
+                            "Info": "This is info about a dresser.",
+                            "Special": "True", //Special items cause a state split. This allows them to be manipulated in a permanent way ('special actions') like pushing,pulling,destroying etc etc. Limit DM to 3 special actions to keep possible room states at 8
+                            "initState" : "false", //for a potential 'reset' function
+                            "SpecialCount":"2",
+                            "Triggers":[ //if special action is performed,these can be set accordingly. Will be used for stateselection AND for path blocking
+                                {
+                                    "1":"false",
+                                    "2":"false",
+                                    "3":"false"
+                                }
+                            ],
+                            "onSearch": "findInventory",
+                            "hidability": "80", //in %? Used for combat situations
+                            "destroyed": "false", //In case its a mimic or  if it gets destroyed
+                            "InteractTypes":[
+                                {
+                                    "onPush":{
+                                        "Response":"This is what the player reads when he pushes the dresser",
+                                        "affectedTrigger":"1",
+                                        "setTrigger":"True" //if action is NOT special, this will ALWAYS be fals since only special actions can trigger state changes. This is a special action AND triggers something
+                                    },
+                                    "onSearch":{
+                                        "Response":"This is what the player reads when he searches the Dresser"
+                                    },
+                                    "onHide":{
+                                        "Response":"This is what the player reads when he hides in the Dresser"
+                                    },
+                                    "onAttack":{
+                                        "Response":"This is what the player reads when he attacks the Dresser",
+                                        "affectedTrigger":"2",
+                                        "setTrigger":"True"
+                                    }
+                                }
+                            ],
+                            "Inventory":[ //Every object has an inventory which gets listed when searched. Players can remove and add things freely. Item gets deleted in object and added in player inventory
+                                {
+                                    "Book":{ //items allow for PERMANENT change in room without increasing state count
+                                        "ItemID": "0", //note how itemID is different than ObjectID
+                                        "Weight": "0.5", //in KG
+                                        "Value" : "0.1", //in Gold (When player sells item to NPC, player dies, player leaves game or other, item gets returned to original location)
+                                        "intiObjectID": "0", //for resetting item
+                                        "FindDifficulty": "3", //Perception check? easy to find
+                                        "info": "This is a book and this string should contain info about it" //info display
+                                    },
+                                    "Key":{
+                                        "ItemID": "1", //needs own item ID in game
+                                        "Weight": "0.1",
+                                        "Value" : "2",
+                                        "intiObjectID": "0",
+                                        "FindDifficulty": "18", //dificult to find
+                                        "info": "This is a key and this string should contain info about it"
+                                    }
+                                }
+                            ],
+                            "Modpoints":[
+                                {
+                                    "1":{
+                                        "InUse": "True",
+                                        "connectedTo": "11",
+                                        "ModType": "Loot",
+                                        "TriggerType": "onSearch"
+                                    },
+                                    "2":{
+                                        "InUse": "True",
+                                        "connectedTo": "12", 
+                                        "ModType": "Combat",
+                                        "TriggerType":"onAttack"
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "connectedTo": "", 
+                                        "ModType": "",
+                                        "TriggerType":""
+                                    }
+                                }
+                            ], 
+                            "TriggerReturns":[//here, triggers can easily be passed to a IF node (used for locking paths for example)
+                                {
+                                    "1":{//corrosponds to triggerstate 1
+                                        "InUse": "True",
+                                        "connectedTo": "9",
+                                        "ObjectType": "IF"
+                                    },
+                                    "2":{
+                                        "InUse": "True",
+                                        "connectedTo": "10",
+                                        "ObjectType": "CombatNode"
+                                    },
+                                    "3":{
+                                        "InUse": "False",
+                                        "connectedTo": "",
+                                        "ObjectType": ""
+                                    }
+                                }
+                            ]
+                        },
+                        "4":{
+                            "nodeID":"4",
+                            "nodeName":"LootNodeName",
+                            "AttatchedTo":"0", //Node it is attatched to
+                            "Repeatable": "True", //in case DM wants it retriggerable
+                            "WaitTime": "30", //minutes until can be looted again.
+                            "Triggerd":"false",//check if it has been triggerd already
+                            "LastTriggerd": "23:00",
+                            "TimeUntilAvaliable": "0",
+                            "LootableObjects":[
+                                {
+                                    "1":{
+                                        "ItemID":"1234679", //random number for dynamic items? idea pls
+                                        "Type": "Weapon", //used for easier parsing of data for DM and Bot
+                                        "Chance": "30", //in % to find this item
+                                        "Name":"Fancy Sword" //basically looks up Item in Item Json File
+                                    },
+                                    "2":{
+                                        "ItemID":"1237679", 
+                                        "Type": "Armor", 
+                                        "Chance": "100", 
+                                        "Name":"Shitty Armor" 
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+
+}

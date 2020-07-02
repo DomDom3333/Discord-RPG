@@ -1,0 +1,457 @@
+{
+    "Author": "SomeRandomDM1234",
+    "OwnerID": "110596839018856448",
+    "Creation_Date": "25/12/2021",
+    "version": "0.0.1",
+    "GameID": "SomeRandomlyGeneratedIDThatIsUnlikelyToBeRepeated",
+    "Squares":[
+        {
+            "1x1":{
+                "nodes":[ 
+                    {
+                        "Location _Nodes":[
+                            {
+                                "0":{
+                                    "nodeID":"0",
+                                    "nodeName": "LocationName1",
+                                    "nodeType": "Location",
+                                    "IncomingNode":"",
+                                    "ObjectPoints": [ 
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "connectedTo": "3",
+                                                "ObjectType": "Special", 
+                                                "SpecialCount": "2" 
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "4":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "5":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "6":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            }
+                                        }
+                                    ],
+                                    "Modpoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "connectedTo": "4", 
+                                                "ModType": "Loot",
+                                                "TriggerType": "onSearch"
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "connectedTo": "", 
+                                                "ModType": "",
+                                                "TriggerType":""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "", 
+                                                "ModType": "",
+                                                "TriggerType":""
+                                            }
+                                        }
+                                    ], 
+                                    "NPCPoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "ConnectedTo": "7",
+                                                "NPCType": "Animal"
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "ConnectedTo": "",
+                                                "NPCType": ""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "ConnectedTo": "",
+                                                "NPCType": ""
+                                            }
+                                        }
+                                    ],
+                                    "ExitPoints":[
+                                        {
+                                            "Window":{
+                                                "Name":"Window",
+                                                "Locked":"False",
+                                                "UnlockIF":"",
+                                                "VisibleBeforeUnlock":"True",
+                                                "Interact_Types":[
+                                                    {
+                                                        "onWalk":{
+                                                            "Response":"You cant 'Walk' through a Window...",
+                                                            "GoTo":""
+                                                        },
+                                                        "onClimb":{
+                                                            "Response":"You Climb Through the Window.",
+                                                            "GoTo":"1"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "CrawlSpace":{
+                                                "Name":"Crawlspace",
+                                                "Locked":"True",
+                                                "UnlockIF":"13",
+                                                "VisibleBeforeUnlock":"False",
+                                                "Interact_Types":[
+                                                    {
+                                                        "onWalk":{
+                                                            "Response":"This is small space. Walking will not work.",
+                                                            "GoTo":""
+                                                        },
+                                                        "onCrawl":{
+                                                            "Response":"You squeeze yourself through the crawlspace. theres a light at the end of the tunnel.",
+                                                            "GoTo":"1"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "1":{
+                                    "nodeID":"1",
+                                    "nodeName": "LocationName2",
+                                    "nodeType": "Location",
+                                    "IncomingNode":"0",
+                                    "ObjectPoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "Flase",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "4":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "5":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            },
+                                            "6":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": "",
+                                                "SpecialCount": ""
+                                            }
+                    
+                                        }
+                                    ],
+                                    "Modpoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "Fa;se",
+                                                "connectedTo": "",
+                                                "ModType": "",
+                                                "TriggerType": ""
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "connectedTo": "", 
+                                                "ModType": "",
+                                                "TriggerType":""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "", 
+                                                "ModType": "",
+                                                "TriggerType":""
+                                            }
+                                        }
+                                    ], 
+                                    "NPCPoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "ConnectedTo": "7",
+                                                "NPCType": "Animal"
+                                            },
+                                            "2":{
+                                                "InUse": "False",
+                                                "ConnectedTo": "",
+                                                "NPCType": ""
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "ConnectedTo": "",
+                                                "NPCType": ""
+                                            }
+                                        }
+                                        
+                                    ]
+                                }
+                            }
+                        ],
+                        "Object_Nodes":[
+                            {
+                                "3":{
+                                    "nodeID":"3",
+                                    "nodeType": "Object",
+                                    "nodeName": "ObjectNodeName",
+                                    "ObjectID": "0", 
+                                    "Name": "Dresser",
+                                    "Info": "This is info about a dresser.",
+                                    "Special": "True", 
+                                    "initState" : "false", 
+                                    "SpecialCount":"2",
+                                    "Triggers":[ 
+                                        {
+                                            "1":"false",
+                                            "2":"false",
+                                            "3":"false"
+                                        }
+                                    ],
+                                    "onSearch": "findInventory",
+                                    "hidability": "80", 
+                                    "destroyed": "false", 
+                                    "InteractTypes":[
+                                        {
+                                            "onPush":{
+                                                "Response":"This is what the player reads when he pushes the dresser",
+                                                "affectedTrigger":"1",
+                                                "setTrigger":"True"
+                                            },
+                                            "onSearch":{
+                                                "Response":"This is what the player reads when he searches the Dresser"
+                                            },
+                                            "onHide":{
+                                                "Response":"This is what the player reads when he hides in the Dresser"
+                                            },
+                                            "onAttack":{
+                                                "Response":"This is what the player reads when he attacks the Dresser",
+                                                "affectedTrigger":"2",
+                                                "setTrigger":"True"
+                                            }
+                                        }
+                                    ],
+                                    "Inventory":[ 
+                                        {
+                                            "Book":{ 
+                                                "ItemID": "0", 
+                                                "Weight": "0.5",
+                                                "Value" : "0.1", 
+                                                "intiObjectID": "0", 
+                                                "FindDifficulty": "3",
+                                                "info": "This is a book and this string should contain info about it"
+                                            },
+                                            "Key":{
+                                                "ItemID": "1", 
+                                                "Weight": "0.1",
+                                                "Value" : "2",
+                                                "intiObjectID": "0",
+                                                "FindDifficulty": "18", 
+                                                "info": "This is a key and this string should contain info about it"
+                                            }
+                                        }
+                                    ],
+                                    "Modpoints":[
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "connectedTo": "11",
+                                                "ModType": "Loot",
+                                                "TriggerType": "onSearch"
+                                            },
+                                            "2":{
+                                                "InUse": "True",
+                                                "connectedTo": "12", 
+                                                "ModType": "Combat",
+                                                "TriggerType":"onAttack"
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "", 
+                                                "ModType": "",
+                                                "TriggerType":""
+                                            }
+                                        }
+                                    ], 
+                                    "TriggerReturns":[
+                                        {
+                                            "1":{
+                                                "InUse": "True",
+                                                "connectedTo": "9",
+                                                "ObjectType": "IF"
+                                            },
+                                            "2":{
+                                                "InUse": "True",
+                                                "connectedTo": "10",
+                                                "ObjectType": "CombatNode"
+                                            },
+                                            "3":{
+                                                "InUse": "False",
+                                                "connectedTo": "",
+                                                "ObjectType": ""
+                                            }
+                                        }
+                                    ]
+                                }   
+                            }
+                        ],
+                        "Loot_Nodes":[
+                            {
+                                "4":{
+                                    "nodeID":"4",
+                                    "NodeType": "Loot",
+                                    "nodeName":"LootNodeName",
+                                    "AttatchedTo":"0", 
+                                    "Repeatable": "True", 
+                                    "WaitTime": "30", 
+                                    "Triggerd":"false",
+                                    "LastTriggerd": "23:00",
+                                    "TimeUntilAvaliable": "0",
+                                    "LootableObjects":[
+                                        {
+                                            "1":{
+                                                "ItemID":"1234679", 
+                                                "Type": "Weapon", 
+                                                "Chance": "30", 
+                                                "Name":"Fancy Sword"
+                                            },
+                                            "2":{
+                                                "ItemID":"1237679", 
+                                                "Type": "Armor", 
+                                                "Chance": "100", 
+                                                "Name":"Shitty Armor" 
+                                            }
+                                        }
+                                    ]
+                                },
+                                "11":{
+                                    "NodeID":"11",
+                                    "NodeType": "Loot",
+                                    "NodeName":"AnotherLootNodeName",
+                                    "AttatchedTo":"3", 
+                                    "Repeatable": "False", 
+                                    "WaitTime": "", 
+                                    "Triggerd":"false",
+                                    "LastTriggerd": "",
+                                    "TimeUntilAvaliable": "",
+                                    "LootableObjects":[
+                                        {
+                                            "1":{
+                                                "ItemID":"1851384", 
+                                                "Type": "Item", 
+                                                "Chance": "1", 
+                                                "Name":"Legendary Thing"
+                                            },
+                                            "2":{
+                                                "ItemID":"0191657", 
+                                                "Type": "Armor", 
+                                                "Chance": "50", 
+                                                "Name":"Average Armor" 
+                                            }
+                                        }
+                                    ]
+                                } 
+                            }
+                        ],
+                        "Combat_Nodes":[
+                            {
+                                "12":{
+                                    "NodeID":"12",
+                                    "NodeType":"Combat",
+                                    "NodeName":"ACombatNodeName",
+                                    "AttatchedTo":"3",
+                                    "Repeatable":"False",
+                                    "WaitTime": "", 
+                                    "Triggerd":"false",
+                                    "LastTriggerd": "",
+                                    "TimeUntilAvaliable": "",
+                                    "Encounter_Text":"Oh No! Some Monsters Appear!!! here is a list of monsters that appeared.",
+                                    "EncounterChances":[
+                                        {
+                                            "1":{
+                                                "MosterID":"165165",
+                                                "Type":"Beast",
+                                                "LowerLevelRange":"3",
+                                                "UpperLevelRange":"6",
+                                                "LevelBias":"5",
+                                                "Name":"Frog",
+                                                "Chance":"85"
+                                            },
+                                            "2":{
+                                                "MonsterID":"6841651",
+                                                "Type":"Construct",
+                                                "LowerLevelRange":"1",
+                                                "UpperLevelRange":"1",
+                                                "LevelBias":"-2",
+                                                "Name":"Animated Knife",
+                                                "Chance":"100"
+                                            }
+
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "IF_Nodes":[
+                            {
+                                "13":{
+                                    "NodeID":"13",
+                                    "NodeName":"This is a Node Name",            
+                                    "IncomingBool":{
+                                        "NodeID":"3",
+                                        "Trigger":"1"
+                                    },
+                                    "IntendedState":"True"
+                                }
+                            }
+                        ],
+                        "NPC_Nodes":[
+                        ]
+
+                    }
+                ]
+            }
+        }
+    ]
+
+}

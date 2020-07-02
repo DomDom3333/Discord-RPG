@@ -1,0 +1,77 @@
+{
+  "locations": [
+    {
+      "locationId": 0,
+      "name": "Tavern Bedroom",
+      "desc": "You walk into the bedroom. It is decorated simply with a straw bed and and a dresser at the far end",
+      "desc1": "You walk into the bedroom. It is decorated simply with a straw bed and and a dresser at the far end. The Dresser has been pushed to the side, revealing a small passage",
+      "condition": "0",
+      "objects": [
+        {
+          "id": 0,
+          "name": "dresser",
+          "onWalk": {},
+          "onPull": {},
+          "onPush": {
+            "desc": "You push the dresser out of the way revealing a small hidden passage",
+            "unlockLocationId": 1
+          },
+          "onClimb": {},
+          "onCrawl": {"goToLocationId": 1},
+          "Search": {},
+          "Attack": {},
+          "Talk": {},
+          "Look": {
+            "desc": "there are scuff marks from where the dresser has been moved"
+          }
+        },
+        {
+          "id": 1,
+          "name": "Book",
+          "avaliable": true,
+          "onWalk": {},
+          "onPull": {},
+          "onPush": {},
+          "onClimb": {},
+          "onCrawl": {"goToLocationId": 1},
+          "Search": {
+            "desc": "A key is stuck in the spine of the Book",
+            "recieve": "Rusty Old Key",
+            "Key":{
+              "ItemID": "0",
+              "name": "Rusty Old Key",
+              "unlockCode": "1234",
+              "desc": "Rusty old key. There used to be engravings along its length"
+            }
+          },
+          "Attack": {},
+          "Talk": {},
+          "Look": {
+            "desc": "there are scuff marks from where the dresser has been moved"
+          }
+        }
+      ]
+    },
+    {
+      "locationId": 1,
+      "name": "Secret Room",
+      "desc": "You crawl through the hidden passage and find another room filled with many cats",
+      "objects": [
+        {
+          "id": 0,
+          "name": "cat",
+          "onWalk": {},
+          "onPull": {},
+          "onPush": {},
+          "onClimb": {},
+          "Search": {},
+          "Attack": {"desc": "the cat hisses at you and dodges away"},
+          "Talk": {},
+          "Look": {
+            "desc": "they seem angry"
+          }
+        }
+      ]
+    }
+  ]
+}

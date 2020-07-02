@@ -1,19 +1,26 @@
 const fs = require("fs");
 const { Console } = require("console");
+const { ChangeChar } = require("./CharacterReader");
 const userPath = "./Resources/UserData/user.json"
+userData = parseJsonFile(userPath);
+
 module.exports = {
         getCharName(message,userID){//pass in user id
             return getCurrentCharName(serverID,userID)
+        },
+        changeSelectedChar(message,newCharName){
+            var currentChar = getCurrentCharName(message.guild.id , message.author.id);
+            var charExists = checkCharExists();
+            if (currentChar == newCharName){
+                return "This character is already selected"
+            }
+            else {
+                setCurrentChar()
+            }
         }
 }
 
-function getCurrentCharNamea(serverID,userID){//retrieve current char name from user ID and return it
-    //serverID = "724992148444938330"
-    //userID = "110596839018856448"
-    userData = parseJsonFile(userPath);
-
-
-
+function getCurrentCharName(serverID,userID){//retrieve current char name from user ID and return it
     currentChar = getCurrentChar(serverID,userID,userData);
     if(currentChar!=""){
         charPath = "./Resources/Servers/"+serverID+"/"+userID+"/"+getCurrentUserCharName(serverID,userID)+"/"+currentChar;
@@ -34,7 +41,10 @@ function parseJsonFile(path){
     return Data;
 }
 
-function checkUserExists(serverID, userID, Data = parseFile(userPath)){ //if attempt to access returns undefined/null, return false. False does not exist
+//---------------------------------------------------------------------------------------------------------------------------------
+//Checking Functions
+
+function checkUserExists(serverID, userID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
     if(checkServerExists(serverID, userID, Data)){
         try{
             var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID];
@@ -52,8 +62,7 @@ function checkUserExists(serverID, userID, Data = parseFile(userPath)){ //if att
         }
     }
 }
-
-function checkServerExists(serverID, userID, Data = parseFile(userPath)){ //if attempt to access returns undefined/null, return false. False does not exist
+function checkServerExists(serverID, userID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
     var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID];
     try{
         if (checkThis == null){
@@ -69,20 +78,52 @@ function checkServerExists(serverID, userID, Data = parseFile(userPath)){ //if a
         Console.log("Command came from user" + userID, "color:red");
     }
 }
+function checkCharExists(serverID, userID,wantedChar){
+    var charPath = "./Resources/Servers/" + serverID + "/" + userID + "/Charfiles" + wantedChar + ".json";
+    if(fs.existsSync(charPath)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
-function getCurrentChar(serverID, userID, Data = parseFile(userPath)){
+//---------------------------------------------------------------------------------------------------------------------------------
+//Getting Functions
+
+function getCurrentChar(serverID, userID, Data = userData){
     if(checkUserExists){
         return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);
     }
 }
-
-function getCurrentCharName(serverID, userID, Data = parseFile(userPath)){
+function getCurrentCharName(serverID, userID, Data = userData){
     return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName);
 }
-
-function getCurrentGame (serverID, userID, Data = parseFile(userPath)){
+function getCurrentGame (serverID, userID, Data = userData){
     return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame);
 }
 
+//---------------------------------------------------------------------------------------------------------------------------------
+//Setting Functions
 
+function setCurrentChar(serverID,userID,newChar){
+    if(checkUserExists(serverID,userID)){
+        if(checkCharExists(serverID,userID,newChar)){
+            Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar = newChar;
+        }
+        else{
+            return "The char you want to select, does not exist. Check spelling."
+        }
+    }
+}
+function setCurretnCharName(serverID,userID,newCharName){
+    if(checkUserExists(serverID,userID)){
+        Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName = newCharName;
+    }
+}
+function setCurrentGame(serverID,userID,newGame){
+    if(checkUserExists(serverID,userID)){
+        Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame = newGame;
+    }
+}
 //Currently: TRYING to read nested objects from json file 

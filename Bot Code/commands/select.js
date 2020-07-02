@@ -1,3 +1,5 @@
+const CharacterReader = require("../CharacterReader");
+
 module.exports = {
     name:"select",
     description:"this allows you to select a character or game",
@@ -17,7 +19,7 @@ module.exports = {
 }
 
 function character(message,args){
-    
+    CharacterReader.ChangeChar(message,args);
 }
 
 function game(message,args){

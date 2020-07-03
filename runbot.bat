@@ -1,2 +1,2 @@
-node %1
+node index.js
 pause

@@ -1,5 +1,5 @@
 const thisthat = require("shelljs");
-const Reader = require("./JSONReader.js");
+const Reader = require("./UserDataReader.js");
 
 module.exports = {
     name: '',

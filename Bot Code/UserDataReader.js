@@ -3,7 +3,7 @@ const userPath = "./Resources/UserData/user.json"
 userData = parseJsonFile(userPath);
 
 module.exports = {
-        checkExistance(message,args){
+        checkExistance(message){
             if(checkServerExists(message.guild.id) && checkUserExists(message.guild.id,message.author.id)){
                 return true;
             }
@@ -11,38 +11,22 @@ module.exports = {
                 return false;
             }
         },
-        createUser(message){
-            serverID = message.guild.id;
-            userID = message.author.id;
-            var userobj = {[userID]:{userID:message.author.id,CurrentChar:"",CurrentCharName:"",CurrentGame:""}};
-            try{
-                userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].push(userobj);
-                console.info(userData);
-                returnJsonData(userPath,userData);
-                console.log("UserData file updated");
-                updateUserData();
-                return "Successfully registerd you! Next up: Upload a character file!";
-            }
-            catch(err){
-                console.log("Failed to update User Data file");
-                return "Something went wrong while trying to create your user Profile";
-            }
-        },
         getCharName(message,userID){//pass in user id
             return getCurrentCharName(message.guild.id,userID)
         },
         changeSelectedChar(message,newCharName){
             var currentChar = getCurrentCharName(message.guild.id , message.author.id);
-            var charExists = checkCharExists();
             if (currentChar == newCharName){
-                return "This character is already selected"
+                return "This character is already selected";
             }
             else {
-                setCurrentChar()
+                return setCurrentChar(message.guild.id,message.author.id,newCharName);
             }
+        },
+        changeSelectedGame(){
+            //TODO see 'changeSelectedChar' for template
         }
 }
-
 function getCurrentCharName(serverID,userID){//retrieve current char name from user ID and return it
     currentChar = getCurrentChar(serverID,userID,userData);
     if(currentChar!=""){
@@ -57,7 +41,6 @@ function getCurrentCharName(serverID,userID){//retrieve current char name from u
     console.log(userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
 
 };
-
 function parseJsonFile(path){
     var Data = fs.readFileSync(path);
     if (Data != null){
@@ -65,30 +48,53 @@ function parseJsonFile(path){
         return JsonData;
     }
     else{
-        console.log("-----------------ERROR READING FILE-----------------")
+        console.log("----------------- FATAL ERROR READING FILE-----------------")
         console.log("File attempted to be read: "+ path);
         console.log("-----------------Exiting program!-----------------")
         process.exit(1);
     }
 }
-function returnJsonData(path, Data){
+function updateUserData(path = userPath, Data = userData){
     console.log("Attempting to write . . .")
     fs.writeFileSync(path,JSON.stringify(Data));
-}
-function updateUserData(){
     userData = parseJsonFile(userPath);
 }
-
+function addServer(serverID){
+    var serverObj = {[serverID]:[]};
+    try{
+        console.log("Adding new server: " + serverID);
+        userData.Servers.push(serverObj);
+        updateUserData(userPath,userData);
+        console.log("Server added successfully");
+        return true;
+    }
+    catch(err){
+        console.log("Failed to add Server");
+        return false;
+    }
+}
+function addUser(userID,serverID){
+    var userobj = {[userID]:{userID:userID,CurrentChar:"",CurrentCharName:"",CurrentGame:""}};
+    try{
+        console.log("Adding new User: " + serverID);
+        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].push(userobj);
+        updateUserData(userPath,userData);
+        console.log("User added successfully");
+        return true;
+    }
+    catch(err){
+        console.log("Failed to add User");
+        return false;
+    }
+}
 //---------------------------------------------------------------------------------------------------------------------------------
 //Checking Functions
 
 function checkUserExists(serverID,userID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
     if(checkServerExists(serverID, Data)){
         try{
-            console.log(Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID)));
-            var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID));
-            if (checkThis == null){
-                return false;
+            if (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID)) == null){
+                return addUser(userID,serverID);;
             }
             else {
                 return true;
@@ -100,25 +106,37 @@ function checkUserExists(serverID,userID, Data = userData){ //if attempt to acce
             Console.log("Command came from user" + userID, "color:red");
         }
     }
+    else{
+        return false;
+    }
 }
 function checkServerExists(serverID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
-    var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID];
+    //var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID];
     try{
-        if (checkThis == null){
-            return false;
+        if (Data.Servers.find(itm => Object.keys(itm).includes(serverID)) == null){
+            return addServer(serverID);        
         }
         else {
             return true;
         }
     }
     catch(err){
-        Console.log("Crash while attempting to check Server Existance", "color:red");
-        Console.log("Command came from Server: " + serverID, "color:red");
+        console.log("Crash while attempting to check Server Existance", "color:red");
+        console.log("Command came from Server: " + serverID, "color:red");
         }
 }
 function checkCharExists(serverID, userID,wantedChar){
-    var charPath = "./Resources/Servers/" + serverID + "/" + userID + "/Charfiles" + wantedChar + ".json";
+    var charPath = "./Resources/Servers/" + serverID + "/" + userID + "/Charfiles/" + wantedChar + ".json";
     if(fs.existsSync(charPath)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+function checkGameExists(serverID, userID,wantedGame){
+    var gamePath = "./Resources/Servers/" + serverID + "/" + userID + "/GameFiles/" + wantedGame + ".json";
+    if(fs.existsSync(gamePath)){
         return true;
     }
     else{
@@ -135,7 +153,7 @@ function getCurrentChar(serverID, userID, Data = userData){
     }
 }
 function getCurrentCharName(serverID, userID, Data = userData){
-    return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName);
+    return (userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName);
 }
 function getCurrentGame (serverID, userID, Data = userData){
     return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame);
@@ -145,23 +163,31 @@ function getCurrentGame (serverID, userID, Data = userData){
 //Setting Functions
 
 function setCurrentChar(serverID,userID,newChar){
-    if(checkUserExists(serverID,userID)){
-        if(checkCharExists(serverID,userID,newChar)){
-            userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar = newChar;
-        }
-        else{
-            return "The char you want to select, does not exist. Check spelling."
-        }
+    if(checkCharExists(serverID,userID,newChar)){
+        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar = (newChar + ".json");
+        updateUserData();
+        console.log("Selected character of: " + userID + " updated successfully")
+        return "Character Updated";
+    }
+    else{
+        return "The char you want to select, does not exist. Check spelling."
     }
 }
 function setCurretnCharName(serverID,userID,newCharName){
-    if(checkUserExists(serverID,userID)){
-        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName = newCharName;
-    }
+    userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName = newCharName;
+    updateUserData();
+    console.log("Selected character name of: " + userID + " updated successfully")
+
 }
 function setCurrentGame(serverID,userID,newGame){
-    if(checkUserExists(serverID,userID)){
-        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame = newGame;
+    if(checkCharExists(serverID,userID,newChar)){
+        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame = (newGame+ ".json");
+        updateUserData();
+        console.log("Selected Game of: " + userID + " updated successfully")
+        return "Game Updated";
+    }
+    else{
+        return "The game you want to select, does not exist. Check spelling."
     }
 }
-//Currently: TRYING to read nested objects from json file 
+

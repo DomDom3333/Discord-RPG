@@ -6,18 +6,25 @@ let character = require('../CharacterReader.js');//for later use
 module.exports = {
     name: 'create',
     description: "creates a Character,game or Party",
+    enabled: true,
     execute(message,args){
-        if(args[1] === "character"){ //second argument tree
-            return createCharacter(message,args);
-        }
-        else if (args[1] === "game"){
-            return createGame(message,args);
-        }
-        else if (args[1] === "party"){
-            return ("Not yet implimented");
+        if(this.enabled){
+            switch (args[1]){
+                case "character":
+                    return createCharacter(message,args);
+                    break;
+                case "game":
+                    return createGame(message,args);
+                    break;
+                case "party":
+                    return ("Not yet implimented");
+                    break;
+                default:
+                    return ("Please specify what you want to create. (Character/Game/Party)")
+            }
         }
         else{
-            return ("Please specify what you want to create. (Character/Game/Party)")
+            return "This command is currently DISABLED"
         }
     }
 }

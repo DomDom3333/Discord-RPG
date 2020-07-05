@@ -1,96 +1,100 @@
 {
-    "Servers": [
-      {
-        "724992148444938330": [
-          {
-            "110596839018856447": {
-              "userID": "110596839018856447",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596839018856449": {
-              "userID": "110596839018856449",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596839018856450": {
-              "userID": "110596839018856450",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596839018856448": {
-              "userID": "110596839018856448",
-              "CurrentChar": "",
-              "CurrentCharName": "",
-              "CurrentGame": ""
-            }
+  "Servers": [
+    {
+      "724992148444938336": [
+        {
+          "110596839018856447": {
+            "userID": "110596839018856447",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
           }
-        ]
-      },
-      {
-        "724992148444938331": [
-          {
-            "110596839018855448": {
-              "userID": "110596839018856448",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596835018856449": {
-              "userID": "110596839018856449",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596839058856450": {
-              "userID": "110596839018856450",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
+        },
+        {
+          "110596839018856449": {
+            "userID": "110596839018856449",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
           }
-        ]
-      },
-      {
-        "724992148444938332": [
-          {
-            "110596939018856448": {
-              "userID": "110596839018856448",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596839098856449": {
-              "userID": "110596839018856449",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
-          },
-          {
-            "110596939018856450": {
-              "userID": "110596839018856450",
-              "CurrentChar": "samplechar.json",
-              "CurrentCharName": "Bob",
-              "CurrentGame": "StructureIdea.json"
-            }
+        },
+        {
+          "110596839018856450": {
+            "userID": "110596839018856450",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
           }
-        ]
-      }
-    ]
-  }
+        }
+      ]
+    },
+    {
+      "724992148444938331": [
+        {
+          "110596839018855448": {
+            "userID": "110596839018856448",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        },
+        {
+          "110596835018856449": {
+            "userID": "110596839018856449",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        },
+        {
+          "110596839058856450": {
+            "userID": "110596839018856450",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        }
+      ]
+    },
+    {
+      "724992148444938332": [
+        {
+          "110596939018856448": {
+            "userID": "110596839018856448",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        },
+        {
+          "110596839098856449": {
+            "userID": "110596839018856449",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        },
+        {
+          "110596939018856450": {
+            "userID": "110596839018856450",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Bob",
+            "CurrentGame": "StructureIdea.json"
+          }
+        }
+      ]
+    },
+    {
+      "724992148444938330": [
+        {
+          "110596839018856448": {
+            "userID": "110596839018856448",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "",
+            "CurrentGame": ""
+          }
+        }
+      ]
+    }
+  ]
+}

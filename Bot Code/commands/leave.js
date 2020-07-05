@@ -1,15 +1,22 @@
 module.exports = {
     name: 'leave',
     description: "Leaves a Party or a Game",
+    enabled: true,
     execute(message,args){ //second argument tree
-        if(args[1] === "party"){
-            return leaveParty(message,args);
-        }
-        else if(args[1] === "game"){
-            return leaveGame(message,args);
+        if(this.enabled){
+            switch (args[1]){
+                case "game":
+                    return leaveGame(message,args);
+                    break;
+                case "party":
+                    return leaveParty(message,args);
+                    break;
+                default:
+                    return ("Please state what you want to leave (Party/Game)");
+                }
         }
         else{
-            return ("Please state what you want to leave (Party/Game)");
+            return "This command is currently DISABLED"
         }
     }
 }

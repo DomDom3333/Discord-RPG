@@ -10,8 +10,9 @@ module.exports = {
         return findLocation(message,args);
     },
     ChangeChar(message,args){
-        updateUserFile(args[2]);
-        
+        if(Reader.checkExistance(message)){
+            return Reader.changeSelectedChar(message,args[2]);
+        }
     },
     load(message,args){
         loadChar(message,args);

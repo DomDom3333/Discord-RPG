@@ -95,6 +95,42 @@
           }
         }
       ]
+    },
+    {
+      "633219185006346251": [
+        {
+          "110596839018856448": {
+            "userID": "110596839018856448",
+            "CurrentChar": "",
+            "CurrentCharName": "",
+            "CurrentGame": ""
+          }
+        },
+        {
+          "117537313717747718": {
+            "userID": "117537313717747718",
+            "CurrentChar": "",
+            "CurrentCharName": "",
+            "CurrentGame": ""
+          }
+        },
+        {
+          "231919448007639041": {
+            "userID": "231919448007639041",
+            "CurrentChar": "",
+            "CurrentCharName": "",
+            "CurrentGame": ""
+          }
+        },
+        {
+          "110629004008005632": {
+            "userID": "110629004008005632",
+            "CurrentChar": "",
+            "CurrentCharName": "",
+            "CurrentGame": ""
+          }
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,10 @@
+//NOT YET IMPLEMENTED. mOSTLY PLACEHOLDER MODULE
+
+
 module.exports = {
     name: 'leave',
     description: "Leaves a Party or a Game",
-    enabled: true,
+    enabled: true, // if false, command will not work
     execute(message,args){ //second argument tree
         if(this.enabled){
             switch (args[1]){

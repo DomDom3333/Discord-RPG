@@ -1,31 +1,37 @@
 const fs = require("fs");
 const userPath = "./Resources/UserData/user.json"
-userData = parseJsonFile(userPath);
+userData = parseJsonFile(userPath); //ALL SERVER AND USER DATA
 
 module.exports = {
-        checkExistance(message){
-            if(checkServerExists(message.guild.id) && checkUserExists(message.guild.id,message.author.id)){
-                return true;
-            }
-            else{
-                return false;
-            }
-        },
-        getCharName(message,userID){//pass in user id
-            return getCurrentCharName(message.guild.id,userID)
-        },
-        changeSelectedChar(message,newCharName){
-            var currentChar = getCurrentCharName(message.guild.id , message.author.id);
-            if (currentChar == newCharName){
-                return "This character is already selected";
-            }
-            else {
-                return setCurrentChar(message.guild.id,message.author.id,newCharName);
-            }
-        },
-        changeSelectedGame(){
-            //TODO see 'changeSelectedChar' for template
+    checkExistance(message){
+        if(checkServerExists(message.guild.id) && checkUserExists(message.guild.id,message.author.id)){
+            return true;
         }
+        else{
+            return false;
+        }
+    },
+    getCharName(message,userID){//pass in user id
+        return getCurrentCharName(message.guild.id,userID)
+    },
+    changeSelectedChar(message,newCharName){
+        var currentChar = getCurrentCharName(message.guild.id , message.author.id);
+        if (currentChar == newCharName){
+            return "This character is already selected";
+        }
+        else {
+            return setCurrentChar(message.guild.id,message.author.id,newCharName);
+        }
+    },
+    changeSelectedGame(message, newGameName){
+        var currentGame = getCurrentGame(message.guild.id , message.author.id);
+        if (currentGame == newGameName){
+            return "This Game is already selected";
+        }
+        else {
+            return setCurrentGame(message.guild.id,message.author.id,newGameName);
+        }        
+    }
 }
 function getCurrentCharName(serverID,userID){//retrieve current char name from user ID and return it
     currentChar = getCurrentChar(serverID,userID,userData);
@@ -41,7 +47,7 @@ function getCurrentCharName(serverID,userID){//retrieve current char name from u
     console.log(userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
 
 };
-function parseJsonFile(path){
+function parseJsonFile(path){ //reads Json file and returns a single data object (userData) which contains all the Server and user data.
     var Data = fs.readFileSync(path);
     if (Data != null){
         JsonData = JSON.parse(Data);
@@ -51,15 +57,15 @@ function parseJsonFile(path){
         console.log("----------------- FATAL ERROR READING FILE-----------------")
         console.log("File attempted to be read: "+ path);
         console.log("-----------------Exiting program!-----------------")
-        process.exit(1);
+        process.exit(1); //exit in attempt to preserve remaining file integrity.
     }
 }
-function updateUserData(path = userPath, Data = userData){
+function updateUserData(path = userPath, Data = userData){ //basically passes the current state of userData into the Json File and then re-reads it, thereby updating both states.
     console.log("Attempting to write . . .")
     fs.writeFileSync(path,JSON.stringify(Data));
     userData = parseJsonFile(userPath);
 }
-function addServer(serverID){
+function addServer(serverID){ //adds new server to userData. Also calls for Refresh
     var serverObj = {[serverID]:[]};
     try{
         console.log("Adding new server: " + serverID);
@@ -73,7 +79,7 @@ function addServer(serverID){
         return false;
     }
 }
-function addUser(userID,serverID){
+function addUser(userID,serverID){ //adds new user to userData. Also calls for Refresh
     var userobj = {[userID]:{userID:userID,CurrentChar:"",CurrentCharName:"",CurrentGame:""}};
     try{
         console.log("Adding new User: " + serverID);

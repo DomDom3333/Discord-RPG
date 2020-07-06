@@ -1,6 +1,10 @@
 //This file is dedicated to taking all messages and sorting them to the according functions accross the bot. ALL messages go through here. This was created to clean up Index.js
 //Message Center works by takin in the input, figuring out where it needs to go, and collecting up any responses, so a single large message can be sent rather than many small ones
 //in short, its an central IO hub between the end user and the bot
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 module.exports = {
     entry: function(message, PREFIX) {
         console.log('New message from "' + message.author.username + '" (ID: ' + message.author.id + ')');
@@ -8,6 +12,7 @@ module.exports = {
         return messageHandler(message, PREFIX);
     }
 }
+
 //code outside of functions only runs at init (once).
 const Discord = require("discord.js");
 const bot = require("../index.js").bot; //import from index
@@ -23,7 +28,7 @@ for(const filename of commandFiles){
 }
 
 
-function messageHandler(message, PREFIX){
+function messageHandler(message, PREFIX){ //First split for messages
     let args = message.content.substring(PREFIX.length).split(" ");
     for (i = 0; i<args.length;i++){//all lowercase for user compatibility
         args[i] = args[i].toLowerCase();
@@ -38,7 +43,7 @@ function messageHandler(message, PREFIX){
                 //call fuction to load a state of the Bot
                 return ("you tried to load")
                 break;
-            case 'exit':
+            case 'exit': //Closes bot via command
                 message.channel.send("Bot shutting down. Goodbye");
                 console.log(".");
                 console.log(".");
@@ -61,7 +66,7 @@ function messageHandler(message, PREFIX){
         }
     }
    //try {
-        if(args[0] === "help"){
+        if(args[0] === "help"){ //awkward lsiting of all commands. Will be removed/overhauled at a later date
             msg = ""
             for (i = 0; i < commandList.length; i++){
                 msg = msg.concat("!", commandList[i], '\n');

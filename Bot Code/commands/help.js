@@ -1,3 +1,5 @@
+//Janky help command
+
 module.exports = {
     name: 'help',
     description: "lists all avaliable commands",

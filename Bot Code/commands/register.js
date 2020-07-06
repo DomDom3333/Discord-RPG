@@ -1,3 +1,5 @@
+//Dedicated command to register a new user and server. Unlikely to be used for release version but helpful for development.
+
 const Reader = require("../UserDataReader.js"); 
 
 module.exports = {

@@ -11,6 +11,7 @@ const PREFIX = '!'; //Global across Project. Should be passed through if nescess
 const MessageCenter = require('./Bot Code/MessageCenter.js') 
 
 bot.on('ready' , () =>{
+    bot.user.setActivity("Bootloops really su.....Bootloops really suc....")
     console.log("this bot it online")//successful startup log
 })
 
@@ -26,7 +27,9 @@ bot.on('message', message =>{
         if (message.content.length<=1) return;//check for length of message
         msg = MessageCenter.entry(message,PREFIX)
         if (msg != "NothingToSend"){
+            message.channel.startTyping();
             message.channel.send(msg);
+            message.channel.stopTyping();
         }
     }
 })

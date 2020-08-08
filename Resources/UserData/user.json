@@ -1,136 +1,80 @@
 {
-  "Servers": [
-    {
-      "724992148444938336": [
-        {
-          "110596839018856447": {
-            "userID": "110596839018856447",
+  "Servers":{
+    "724992148444938336":{
+        "110596839018856447": {
+          "userID": "110596839018856447",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
+        },
+        "110596839018856449": {
+          "userID": "110596839018856449",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
+        },
+        "110596839018856450": {
+          "userID": "110596839018856450",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
+        }
+    },
+    "724992148444938331":{
+        "110596839018855448": {
+            "userID": "110596839018856448",
             "CurrentChar": "samplechar.json",
             "CurrentCharName": "Bob",
             "CurrentGame": "StructureIdea.json"
-          }
         },
-        {
-          "110596839018856449": {
+        "110596835018856449": {
             "userID": "110596839018856449",
             "CurrentChar": "samplechar.json",
             "CurrentCharName": "Bob",
             "CurrentGame": "StructureIdea.json"
-          }
         },
-        {
-          "110596839018856450": {
+        "110596839058856450": {
             "userID": "110596839018856450",
             "CurrentChar": "samplechar.json",
             "CurrentCharName": "Bob",
             "CurrentGame": "StructureIdea.json"
-          }
         }
-      ]
     },
-    {
-      "724992148444938331": [
-        {
-          "110596839018855448": {
-            "userID": "110596839018856448",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
+    "724992148444938332":{
+        "110596939018856448": {
+          "userID": "110596839018856448",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
         },
-        {
-          "110596835018856449": {
-            "userID": "110596839018856449",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
+        "110596839098856449": {
+          "userID": "110596839018856449",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
         },
-        {
-          "110596839058856450": {
-            "userID": "110596839018856450",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
+        "110596939018856450": {
+          "userID": "110596839018856450",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "Bob",
+          "CurrentGame": "StructureIdea.json"
         }
-      ]
     },
-    {
-      "724992148444938332": [
-        {
-          "110596939018856448": {
-            "userID": "110596839018856448",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
-        },
-        {
-          "110596839098856449": {
-            "userID": "110596839018856449",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
-        },
-        {
-          "110596939018856450": {
-            "userID": "110596839018856450",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "Bob",
-            "CurrentGame": "StructureIdea.json"
-          }
+    "724992148444938330":{
+        "110596839018856448":{
+          "userID": "110596839018856448",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "",
+          "CurrentGame": "structureidea.json"
         }
-      ]
     },
-    {
-      "724992148444938330": [
-        {
-          "110596839018856448": {
-            "userID": "110596839018856448",
-            "CurrentChar": "samplechar.json",
-            "CurrentCharName": "",
-            "CurrentGame": ""
-          }
-        }
-      ]
-    },
-    {
-      "633219185006346251": [
-        {
-          "110596839018856448": {
-            "userID": "110596839018856448",
-            "CurrentChar": "",
-            "CurrentCharName": "",
-            "CurrentGame": ""
-          }
-        },
-        {
-          "117537313717747718": {
-            "userID": "117537313717747718",
-            "CurrentChar": "",
-            "CurrentCharName": "",
-            "CurrentGame": ""
-          }
-        },
-        {
-          "231919448007639041": {
-            "userID": "231919448007639041",
-            "CurrentChar": "",
-            "CurrentCharName": "",
-            "CurrentGame": ""
-          }
-        },
-        {
-          "110629004008005632": {
-            "userID": "110629004008005632",
-            "CurrentChar": "",
-            "CurrentCharName": "",
-            "CurrentGame": ""
-          }
-        }
-      ]
+    "0000":{
+      "0001":{
+        "userID": "110596839018856448",
+          "CurrentChar": "samplechar.json",
+          "CurrentCharName": "",
+          "CurrentGame": "structureidea.json"
+      }
     }
-  ]
+  }
 }

@@ -31,7 +31,7 @@ module.exports = {
 }
 
 function createGame(message, args){ //Creates Directory and fills in the JSON file of the game
-    if(message.attachments.array()[0].url != null){
+    if(message.attachments[0] != null){
         var dir = './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/GameFiles/' + args[2];
         var filename = message.attachments.array()[0].name;
         filename = filename.toLowerCase();
@@ -45,11 +45,11 @@ function createGame(message, args){ //Creates Directory and fills in the JSON fi
             }
         }
         else {
-            return ("Please add a name for the game (!game create [name]");
+            return ("Please add a name for the game (!create Game [name]");
         }
     }
     else {
-        return ("Please upload a JSON Game File");
+        return ("Please upload a JSON Game File along with the command");
     }
 
 }
@@ -63,18 +63,25 @@ function downloadGame(message,args,dir){ //Downloads a file from the given URL
 }
 
 function createCharacter(message,args){//Creates Directory and fills in the JSON file of the Character
-    var dir = './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' + args[2];
-    var filename = message.attachments.array()[0].name;
-    filename = filename.toLowerCase();
-    if (args[2] != null){
-        if(filename.substring(filename.length-4) === 'json'){
-            shelljs.mkdir('-p', './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' + args[2]);
-            console.log("filname = json");
-            downloadChar(message,args,dir);
+    if(message.attachments[0] != null){
+        var dir = './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' + args[2];
+        var filename = message.attachments.array()[0].name;
+        filename = filename.toLowerCase();
+        if (args[2] != null){
+            if(filename.substring(filename.length-4) === 'json'){
+                shelljs.mkdir('-p', './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' + args[2]);
+                downloadChar(message,args,dir);
+            }
+            else{
+                return ("Please only upload JSON files. All other will be ignored")
+            }
         }
-        else{
-            return ("Please only upload JSON files. All other will be ignored")
+        else {
+            return ("Please add a name for the Character (!create Character [name]");
         }
+    }
+    else {
+        return ("Please upload a JSON Game File along with the command");
     }
 }
 

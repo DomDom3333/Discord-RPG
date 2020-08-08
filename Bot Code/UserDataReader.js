@@ -1,8 +1,21 @@
 const fs = require("fs");
 const userPath = "./Resources/UserData/user.json"
-userData = parseJsonFile(userPath); //ALL SERVER AND USER DATA
+var userData = parseJsonFile(userPath); //ALL SERVER AND USER DATA
+var currentServerID = "0000";
+var currentUserID = "0001";
 
 module.exports = {
+
+    CurrentChar: userData.Servers[currentServerID][currentUserID].CurrentChar,
+    CurrentCharName: userData.Servers[currentServerID][currentUserID].CurrentCharName,
+    CurrentGame: userData.Servers[currentServerID][currentUserID].CurrentGame,
+
+    updateIDs(message){
+        currentServerID = message.guild.id;
+        currentUserID = message.author.id;
+
+    },
+
     checkExistance(message){
         if(checkServerExists(message.guild.id) && checkUserExists(message.guild.id,message.author.id)){
             return true;
@@ -11,16 +24,30 @@ module.exports = {
             return false;
         }
     },
-    getCharName(message,userID){//pass in user id
-        return getCurrentCharName(message.guild.id,userID)
+    hasCharSelected(message){
+        if(getCurrentChar(message.guild.ID, message.author.id) != ""){
+            return true;
+        }
+        else{
+            return false;
+        }
     },
-    changeSelectedChar(message,newCharName){
-        var currentChar = getCurrentCharName(message.guild.id , message.author.id);
-        if (currentChar == newCharName){
+    getCharName(message){//pass in user id 
+        return getCurrentCharName(message.guild.id,message.author.id)
+    },
+    getCurrentChar(serverID,userID){
+        return getCurrentChar(serverID,userID);
+    },
+    getGame(message){
+        return getCurrentGame(message.guild.id,message.author.id);
+    },
+    changeSelectedChar(message,newChar){
+        var currentChar = getCurrentChar(message.guild.id , message.author.id);
+        if (currentChar == newChar){
             return "This character is already selected";
         }
         else {
-            return setCurrentChar(message.guild.id,message.author.id,newCharName);
+            return setCurrentChar(message.guild.id,message.author.id,newChar);
         }
     },
     changeSelectedGame(message, newGameName){
@@ -33,20 +60,7 @@ module.exports = {
         }        
     }
 }
-function getCurrentCharName(serverID,userID){//retrieve current char name from user ID and return it
-    currentChar = getCurrentChar(serverID,userID,userData);
-    if(currentChar!=""){
-        charPath = "./Resources/Servers/"+serverID+"/"+userID+"/"+getCurrentUserCharName(serverID,userID)+"/"+currentChar;
-    }
-    else{
-        return "There is no character selected. Use '!Select Character' to select an existing character";
-    }
-    
 
-    console.log(userData.Servers[0]["724992148444938330"][0]["110596839018856448"].CurrentChar)//THIS WORKS!! Loop througha array points to eventually get to value?
-    console.log(userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
-
-};
 function parseJsonFile(path){ //reads Json file and returns a single data object (userData) which contains all the Server and user data.
     var Data = fs.readFileSync(path);
     if (Data != null){
@@ -99,7 +113,7 @@ function addUser(userID,serverID){ //adds new user to userData. Also calls for R
 function checkUserExists(serverID,userID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
     if(checkServerExists(serverID, Data)){
         try{
-            if (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID)) == null){
+            if (Data.Servers[serverID][userID] == null){
                 return addUser(userID,serverID);;
             }
             else {
@@ -119,7 +133,7 @@ function checkUserExists(serverID,userID, Data = userData){ //if attempt to acce
 function checkServerExists(serverID, Data = userData){ //if attempt to access returns undefined/null, return false. False does not exist
     //var checkThis = Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID];
     try{
-        if (Data.Servers.find(itm => Object.keys(itm).includes(serverID)) == null){
+        if (Data.Servers[serverID] == null){
             return addServer(serverID);        
         }
         else {
@@ -155,24 +169,34 @@ function checkGameExists(serverID, userID,wantedGame){
 
 function getCurrentChar(serverID, userID, Data = userData){
     if(checkUserExists){
-        return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);
+        return Data.Servers[serverID][userID].CurrentChar;
+        //return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);
     }
 }
 function getCurrentCharName(serverID, userID, Data = userData){
-    return (userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName);
+    console.log(Data.Servers[serverID]);
+    return Data.Servers[serverID][userID].CurrentCharName;
 }
-function getCurrentGame (serverID, userID, Data = userData){
-    return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame);
+function getCurrentGame(serverID, userID, Data = userData){
+    if(checkUserExists(serverID,userID)){
+        return Data.Servers[serverID][userID].CurrentGame;
+       // return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame);
+    }
 }
+
+/*function getCurrentID(){ DO NOT USE
+    return (Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame)
+}*/
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 //Setting Functions
 
 function setCurrentChar(serverID,userID,newChar){
     if(checkCharExists(serverID,userID,newChar)){
-        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar = (newChar + ".json");
+        userData.Servers[serverID][userID].CurrentChar = (newChar + ".json");
         updateUserData();
-        console.log("Selected character of: " + userID + " updated successfully")
+        console.log("Selected character of " + userID + " updated successfully")
         return "Character Updated";
     }
     else{
@@ -180,13 +204,25 @@ function setCurrentChar(serverID,userID,newChar){
     }
 }
 function setCurretnCharName(serverID,userID,newCharName){
-    userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentCharName = newCharName;
+    userData.Servers[serverID][userID].CurrentCharName = newCharName;
     updateUserData();
     console.log("Selected character name of: " + userID + " updated successfully")
 
 }
-function setCurrentGame(serverID,userID,newGame){
-    if(checkCharExists(serverID,userID,newChar)){
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//The following function is fucked. Its meant to Set the game after checking that this exists.I copied th code form the Char version and fucke dup. oops
+/*function setCurrentGame(serverID,userID,newChar){
+    if(checkCharExists(serverID,userID,newGame)){
         userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentGame = (newGame+ ".json");
         updateUserData();
         console.log("Selected Game of: " + userID + " updated successfully")
@@ -195,5 +231,23 @@ function setCurrentGame(serverID,userID,newGame){
     else{
         return "The game you want to select, does not exist. Check spelling."
     }
-}
+}*/
+
+
+//---------------------------------------------------------------------------------------------------------------------------------
+//Somehow this function exists twice and this version of it seems to do nothing...
+/*function getCurrentCharName(serverID,userID){
+    currentChar = getCurrentChar(serverID,userID,userData);
+    if(currentChar!=""){
+        charPath = "./Resources/Servers/"+serverID+"/"+userID+"/"+getCurrentUserCharName(serverID,userID)+"/"+currentChar;
+    }
+    else{
+        return "There is no character selected. Use '!Select Character' to select an existing character";
+    }
+    
+
+    console.log(userData.Servers[0]["724992148444938330"][0]["110596839018856448"].CurrentChar)//THIS WORKS!! Loop througha array points to eventually get to value?
+    console.log(userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
+
+};*/
 

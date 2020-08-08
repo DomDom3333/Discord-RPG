@@ -1,39 +1,60 @@
-const thisthat = require("shelljs");
-const Reader = require("./UserDataReader.js");
+const fs = require("fs");
+const UserDataReader = require("./UserDataReader.js");
+var charPath = "./Resources/Servers/0000/0001/Charfiles/samplechar.json"
+var CharFile = parseJsonFile(charPath); //ALL SERVER AND USER DATA
 
 module.exports = {
-    name: '',
-    gender: '',
-    race:'',
-    stats:'',
-    loaction(message,args){
-        return findLocation(message,args);
+
+    name: CharFile.Name,
+    level: CharFile.Level,
+    currentNodeType: CharFile.CurrentNodeType,
+    currentNode: CharFile.InGameLocation,
+
+    readUser(message){
+        loadNewCharFile(message)
     },
-    ChangeChar(message,args){
-        if(Reader.checkExistance(message)){
-            return Reader.changeSelectedChar(message,args[2]);
+    getCharLevel(message){
+        if(UserDataReader.CurrentChar != ""){
+            loadNewCharFile(message);
+            return CharFile.Level;
+        }
+        else{
+            return "No character Selected."
         }
     },
-    load(message,args){
-        loadChar(message,args);
+    getCharInGameLocation(message){
+        loadNewCharFile(message);
     }
 }
 
-function save(message,args){
-    JSON.stringify();
-    gender = "male";
-}
-function loadChar(message,args){
-    var dir = './Resources/Servers/' + message.guild.id + '/' + message.author.id + '/CharFiles/' // + character/filename
-}
-function updateUserFile(){
-
+function loadNewCharFile(message){
+    charPath = getUserFile(message);
+    CharFile = parseJsonFile(charPath);
 }
 
-function findLocation(message,args){
+function writeChanges(path = charPath, Data = CharFile){ //basically passes the current state of userData into the Json File and then re-reads it, thereby updating both states.
+    console.log("Attempting to write . . .")
+    fs.writeFileSync(path,JSON.stringify(Data));
+    Data = parseJsonFile(Data);
+}
+
+function getUserFile(message){
     userID = message.author.id;
     serverID = message.guild.id;
-    return Reader.getCharName(serverID,userID);
+    selectedChar = UserDataReader.getCurrentChar(serverID,userID);
+    return charPath = "./Resources/Servers/" + serverID + "/" + userID + "/CharFiles/" + selectedChar;
 }
 
-//This file is not yet in use. This will be used for opening, saving and editing character files
+function parseJsonFile(path){ //reads Json file and returns a single data object (userData) which contains all the Characterdata.
+    var Data = fs.readFileSync(path);
+    if (Data != null){
+        JsonData = JSON.parse(Data);
+        return JsonData;
+    }
+    else{
+        console.log("----------------- FATAL ERROR READING FILE-----------------")
+        console.log("File attempted to be read: "+ path);
+        console.log("-----------------Exiting program!-----------------")
+        process.exit(1); //exit in attempt to preserve remaining file integrity.
+    }
+}

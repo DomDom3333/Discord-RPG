@@ -4,6 +4,17 @@
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+//code outside of functions only runs at init (once).
+const Discord = require("discord.js");
+const bot = require("../index.js").bot; //import from index
+const CharInfo = require('./CharacterReader');
+const UserInfo = require('./UserDataReader');
+const GameInfo = require('./GameFileReader');
+const fs = require('fs');
+
+var commandList = [];
+bot.commands = new Discord.Collection(); //creates list of allowed commands based on folder content.
+const commandFiles = fs.readdirSync("./Bot Code/commands/").filter(file => file.endsWith('.js'));
 
 module.exports = {
     entry: function(message, PREFIX) {
@@ -13,14 +24,6 @@ module.exports = {
     }
 }
 
-//code outside of functions only runs at init (once).
-const Discord = require("discord.js");
-const bot = require("../index.js").bot; //import from index
-const fs = require('fs');
-
-var commandList = [];
-bot.commands = new Discord.Collection(); //creates list of allowed commands based on folder content.
-const commandFiles = fs.readdirSync("./Bot Code/commands/").filter(file => file.endsWith('.js'));
 for(const filename of commandFiles){
     const command = require (`./commands/${filename}`); //dynamically creat folder of story related commands per user? 
     bot.commands.set(command.name,command);
@@ -30,6 +33,10 @@ for(const filename of commandFiles){
 
 function messageHandler(message, PREFIX){ //First split for messages
     let args = message.content.substring(PREFIX.length).split(" ");
+    UserInfo.updateIDs(message);
+    CharInfo.readUser(message);
+    GameInfo.updateGame(message);
+    console.log(GameInfo.currentNode);
     for (i = 0; i<args.length;i++){//all lowercase for user compatibility
         args[i] = args[i].toLowerCase();
     }
@@ -65,7 +72,8 @@ function messageHandler(message, PREFIX){ //First split for messages
                 break;
         }
     }
-   //try {
+    
+   try {
         if(args[0] === "help"){ //awkward lsiting of all commands. Will be removed/overhauled at a later date
             msg = ""
             for (i = 0; i < commandList.length; i++){
@@ -74,8 +82,8 @@ function messageHandler(message, PREFIX){ //First split for messages
             return (msg);
         }
         return bot.commands.get(args[0]).execute(message,args);//attempt to run a given command. if it exists
-    /*}
+    }
      catch(err) {//failover if a command doesnt exist
         return "NothingToSend"
-    } */
+    }
 }

@@ -17,7 +17,7 @@
                                 "nodeID":"0",
                                 "nodeName": "LocationName1",
                                 "nodeType": "Location",
-                                "IncomingNode":"Entry",
+                                "IncomingNode":"",
                                 "ObjectPoints":{
                                         "1":{
                                             "InUse": "True",
@@ -123,7 +123,7 @@
                                             "Interact_Types":
                                                 {
                                                     "onWalk":{
-                                                        "Response":"This is a small space. Walking will not work.",
+                                                        "Response":"This is small space. Walking will not work.",
                                                         "GoTo":""
                                                     },
                                                     "onCrawl":{

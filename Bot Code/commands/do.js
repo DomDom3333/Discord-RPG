@@ -11,22 +11,26 @@ module.exports = {
     enabled: true, // if false, command will not work
     execute(message,args){
         if(this.enabled){
-            switch(args[1]){
-                case "walk":
-                    return walk(message,args);
-                    break;
-                case "climb":
-                    return climb(message,args);
-                    break;
-                case "push":
-                    return push(message,args);
-                    break;
-                case "search":
-                    return search(message,args);
-                    break;
-                default:
-                    return "Not Yet Implemented";
-                    return "Please describe what you would like to do";
+            if(UserReader.CurrentGame != ''){
+                switch(args[1]){
+                    case "walk":
+                        return walk(message,args);
+                        break;
+                    case "climb":
+                        return climb(message,args);
+                        break;
+                    case "push":
+                        return push(message,args);
+                        break;
+                    case "search":
+                        return search(message,args);
+                        break;
+                    default:
+                        return "Please describe what you would like to do";
+                }
+            }
+            else{
+                return "Please select a game before using this command."
             }
         }
         else{

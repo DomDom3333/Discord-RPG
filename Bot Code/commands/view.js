@@ -2,8 +2,9 @@
 
 //This is going to be a bitch isnt it......
 
-const Reader = require("../UserDataReader");
-const CharReader = require("../CharacterReader.js");
+const UserInfo = require("../UserDataReader.js");
+const CharInfo = require("../CharacterReader.js");
+const GameInfo = require("../GameFileReader.js");
 
 module.exports = {
     name: 'view',
@@ -31,15 +32,17 @@ module.exports = {
 function viewCurrent(message,args){
     switch (args[2]){
         case "all":
-            var CharName = Reader.getCharName(message,message.author.id);
-            var CharID = Reader.getCharID();
+            var CharName = UserInfo.getCharName(message,message.author.id);
+            var CharID = UserInfo.getCharID();
             break;
         case "character":
             return viewCurrentCharacter(message,args);
             break;
         case "game":
-            return "This is the currrent Game your character is currently in.";
+            return "This is the Game your current character is in.";
             break;
+        default:
+            return "Please state what aspect you want to view (current character/game/all)"
     }
 }
 
@@ -50,14 +53,28 @@ function viewParty(message,args){
 function viewCurrentCharacter(message,args){
     if(args[3] != null){
         switch (args[3]){
+            case "location":
+                if(UserInfo.CurrentGame != ""){
+                    if(UserInfo.CurrentChar != ""){
+                        return "You are at node number: " + GameInfo.currentNode + ", with the name: " + GameInfo.currentNode.nodeName;
+                    }
+                    else{
+                        return "You have no valid Character selected. Please use the 'select' command to select a character before using this command.";
+                    }
+                }
+                else{
+                    return "You have no valid Game selected. Please use the 'select' command to select a game before using this command."
+                }
+                break;
             case "name":
-                return Reader.getCharName(message);
+                return UserInfo.getCharName(message);
                 break;
             case "id":
-                return Reader.getCharID();
+                return UserInfo.getCharID();
                 break;
             case "level":
-                return CharReader.getCharLevel(message);
+                return CharInfo
+            .getCharLevel(message);
                 break;
             case "type":
                 return "Coming soon";
@@ -80,9 +97,9 @@ function viewCurrentCharacter(message,args){
             case "all":
                 //Here, grab all important data points an append them to fullText variable. Then return fullText.
                 var fullText = "";
-                fullText += ("Selected Character: " + Reader.getCharName(message,message.author.id) + "\n");
-                //fullText += "Character ID: " + Reader.getCharID() + "\n";
-                fullText += ("Active Game: " + Reader.getGame(message) + "\n");
+                fullText += ("Selected Character: " + UserInfo.getCharName(message,message.author.id) + "\n");
+                //fullText += "Character ID: " + UserInfo.getCharID() + "\n";
+                fullText += ("Active Game: " + UserInfo.getGame(message) + "\n");
                 return fullText;
                 break;
             default:

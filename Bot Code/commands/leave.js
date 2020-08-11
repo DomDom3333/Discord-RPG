@@ -25,9 +25,9 @@ module.exports = {
 }
 
 function leaveParty(message,args){ //leaves a party (not yet implimented)
-    return ("You have left the party");
+    return ("Not yet Implemented");
 }
 
 function leaveGame(message,args){ //leaves a game (not yet implimented)
-    return ("You have left the Game");
+    return ("Not yet Implemented");
 }

@@ -1,27 +1,62 @@
 const fs = require("fs");
+const CONFIG = require("./config.json");
 const userPath = "./Resources/UserData/user.json"
 var userData = parseJsonFile(userPath); //ALL SERVER AND USER DATA
 var currentServerID = "0000";
 var currentUserID = "0001";
 
 module.exports = {
-
     CurrentChar: userData.Servers[currentServerID][currentUserID].CurrentChar,
     CurrentCharName: userData.Servers[currentServerID][currentUserID].CurrentCharName,
     CurrentGame: userData.Servers[currentServerID][currentUserID].CurrentGame,
+    allGames: userData.Servers[currentServerID][currentUserID].allGames,
+    allChars: userData.Servers[currentServerID][currentUserID].allChars,
+
+    CurrentSID: currentServerID,
+    CurrentUID: currentUserID,
+    CurrentPath: userPath,
 
     updateIDs(message){
         currentServerID = message.guild.id;
         currentUserID = message.author.id;
 
+        this.CurrentChar = userData.Servers[currentServerID][currentUserID].CurrentChar;
+        this.CurrentChar = userData.Servers[currentServerID][currentUserID].CurrentChar,
+        this.CurrentCharName = userData.Servers[currentServerID][currentUserID].CurrentCharName,
+        this.CurrentGame = userData.Servers[currentServerID][currentUserID].CurrentGame,
+        this.allGames = userData.Servers[currentServerID][currentUserID].allGames,
+        this.allChars = userData.Servers[currentServerID][currentUserID].allChars
     },
-
+    Save(){
+        updateUserData();
+    },
     checkExistance(message){
         if(checkServerExists(message.guild.id) && checkUserExists(message.guild.id,message.author.id)){
             return true;
         }
         else{
             return false;
+        }
+    },
+    addGame(gameName){
+        try{
+            userData.Servers[currentServerID][currentUserID].allGames.push(gameName);
+            this.allGames = userData.Servers[currentServerID][currentUserID].allGames;
+            return "Successfully added a Game. You can now select it as your current one by typing: " + CONFIG.Prefix + "select game '" + gameName + "'";
+        }
+        catch(err){
+            return "Something went wrong while trying to add the game to your avaliable game list";
+        }
+
+    },
+    addChar(charName){
+        try{
+            userData.Servers[currentServerID][currentUserID].allChars.push(charName);
+            this.allChars = userData.Servers[currentServerID][currentUserID].allChars
+            return "Successfully added a Character. You can now select it as your current one by typing: " + CONFIG.Prefix + "select character '" + charName + "'";
+        }
+        catch(err){
+            return "Something went wrong while trying to add the game to your avaliable Char list"
         }
     },
     hasCharSelected(message){
@@ -31,15 +66,6 @@ module.exports = {
         else{
             return false;
         }
-    },
-    getCharName(message){//pass in user id 
-        return getCurrentCharName(message.guild.id,message.author.id)
-    },
-    getCurrentChar(serverID,userID){
-        return getCurrentChar(serverID,userID);
-    },
-    getGame(message){
-        return getCurrentGame(message.guild.id,message.author.id);
     },
     changeSelectedChar(message,newChar){
         var currentChar = getCurrentChar(message.guild.id , message.author.id);
@@ -75,15 +101,15 @@ function parseJsonFile(path){ //reads Json file and returns a single data object
     }
 }
 function updateUserData(path = userPath, Data = userData){ //basically passes the current state of userData into the Json File and then re-reads it, thereby updating both states.
-    console.log("Attempting to write . . .")
+    console.log("Attempting to write to UserFile . . .")
     fs.writeFileSync(path,JSON.stringify(Data));
     userData = parseJsonFile(userPath);
+    console.log("Success writing to UserFile!");
 }
 function addServer(serverID){ //adds new server to userData. Also calls for Refresh
-    var serverObj = {[serverID]:[]};
     try{
         console.log("Adding new server: " + serverID);
-        userData.Servers.push(serverObj);
+        userData.Servers[serverID] = {};
         updateUserData(userPath,userData);
         console.log("Server added successfully");
         return true;
@@ -94,10 +120,9 @@ function addServer(serverID){ //adds new server to userData. Also calls for Refr
     }
 }
 function addUser(userID,serverID){ //adds new user to userData. Also calls for Refresh
-    var userobj = {[userID]:{userID:userID,CurrentChar:"",CurrentCharName:"",CurrentGame:""}};
     try{
         console.log("Adding new User: " + serverID);
-        userData.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].push(userobj);
+        userData.Servers[serverID][userID] = {userID:userID,allChars:[],allGames:[],CurrentChar:"",CurrentCharName:"",CurrentGame:""};
         updateUserData(userPath,userData);
         console.log("User added successfully");
         return true;
@@ -121,9 +146,9 @@ function checkUserExists(serverID,userID, Data = userData){ //if attempt to acce
             }
         }
         catch(err){
-            Console.log("Crash while attempting to check User Existance", "color:red");
-            Console.log("Command came from Server: " + serverID, "color:red");
-            Console.log("Command came from user" + userID, "color:red");
+            console.log("Crash while attempting to check User Existance", "color:red");
+            console.log("Command came from Server: " + serverID, "color:red");
+            console.log("Command came from user" + userID, "color:red");
         }
     }
     else{
@@ -143,7 +168,7 @@ function checkServerExists(serverID, Data = userData){ //if attempt to access re
     catch(err){
         console.log("Crash while attempting to check Server Existance", "color:red");
         console.log("Command came from Server: " + serverID, "color:red");
-        }
+    }
 }
 function checkCharExists(serverID, userID,wantedChar){
     var charPath = "./Resources/Servers/" + serverID + "/" + userID + "/Charfiles/" + wantedChar + ".json";

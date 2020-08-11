@@ -1,5 +1,6 @@
 const fs = require("fs");
 const UserDataReader = require("./UserDataReader.js");
+const { Console } = require("console");
 var charPath = "./Resources/Servers/0000/0001/Charfiles/samplechar.json"
 var CharFile = parseJsonFile(charPath); //ALL SERVER AND USER DATA
 
@@ -11,7 +12,12 @@ module.exports = {
     currentNode: CharFile.InGameLocation,
 
     readUser(message){
-        loadNewCharFile(message)
+        loadNewCharFile(message);
+        
+        this.name = CharFile.Name;
+        this.level = CharFile.Level;
+        this.currentNodeType = CharFile.CurrentNodeType;
+        this.currentNode = CharFile.InGameLocation;
     },
     getCharLevel(message){
         if(UserDataReader.CurrentChar != ""){
@@ -24,25 +30,46 @@ module.exports = {
     },
     getCharInGameLocation(message){
         loadNewCharFile(message);
-    }
+    },
+    Save(){
+        writeChanges();
+    },
 }
 
 function loadNewCharFile(message){
     charPath = getUserFile(message);
-    CharFile = parseJsonFile(charPath);
+    if(charPath != ""){
+        CharFile = parseJsonFile(charPath);
+    }
 }
 
 function writeChanges(path = charPath, Data = CharFile){ //basically passes the current state of userData into the Json File and then re-reads it, thereby updating both states.
-    console.log("Attempting to write . . .")
-    fs.writeFileSync(path,JSON.stringify(Data));
-    Data = parseJsonFile(Data);
+    if(path != ''){
+        try{
+            console.log("Attempting to write to CharFile . . .")
+            fs.writeFileSync(path,JSON.stringify(Data));
+            Data = parseJsonFile(Data);
+            console.log("Success writing to CharFile!");
+        }
+        catch(err){
+            console.log("Something went wrong while writing to CharFile.")
+        }
+    }
+    else{   
+        console.log("No Char File to write to. Skipping . . .");
+    }
 }
 
 function getUserFile(message){
     userID = message.author.id;
     serverID = message.guild.id;
-    selectedChar = UserDataReader.getCurrentChar(serverID,userID);
-    return charPath = "./Resources/Servers/" + serverID + "/" + userID + "/CharFiles/" + selectedChar;
+    selectedChar = UserDataReader.CurrentChar;
+    if(selectedChar != ""){
+        return charPath = "./Resources/Servers/" + serverID + "/" + userID + "/CharFiles/" + selectedChar;
+    }
+    else{
+        return "";
+    }
 }
 
 function parseJsonFile(path){ //reads Json file and returns a single data object (userData) which contains all the Characterdata.

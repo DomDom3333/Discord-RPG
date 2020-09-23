@@ -1,0 +1,25 @@
+{
+    "Author": "SomeRandomDM1234",
+    "OwnerID": "110596839018856448",
+    "Creation_Date": "25/12/2021",
+    "version": "0.0.1",
+    "GameID": "SomeRandomlyGeneratedIDThatIsUnlikelyToBeRepeated",
+    "Squares":
+    {
+        "G1x1":{
+            "nodes":{
+                "Spawn":{
+                    "goTo":"1"
+                },
+                "1":{
+                    "nodeID":"",
+                    "nodeName":"",
+                    "nodeType":"",
+                    "onWalk":{
+                        
+                    }
+                }
+            }
+        }
+    }
+}

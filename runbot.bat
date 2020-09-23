@@ -1,2 +1,2 @@
-node index.js > log.txt
+node index.js
 pause

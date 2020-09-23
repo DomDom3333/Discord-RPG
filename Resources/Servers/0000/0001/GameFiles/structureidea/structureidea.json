@@ -14,44 +14,46 @@
                     },
                     "Locations":{
                             "0":{
-                                "nodeID":"0",
-                                "nodeName": "LocationName1",
+                                "NodeID":"0",
+                                "NodeName": "LocationName1",
                                 "nodeType": "Location",
+                                "IntroText":"Welcome to the Test Room",
+                                "LookText":"You see a Window in an otherwise completly empty room",
                                 "IncomingNode":"",
                                 "ObjectPoints":{
                                         "1":{
                                             "InUse": "True",
-                                            "connectedTo": "3",
+                                            "ConnectedTo": "3",
                                             "ObjectType": "Special", 
                                             "SpecialCount": "2" 
                                         },
                                         "2":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "4":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "5":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "6":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         }
@@ -60,19 +62,19 @@
                                 "Modpoints":{
                                         "1":{
                                             "InUse": "True",
-                                            "connectedTo": "4", 
+                                            "ConnectedTo": "4", 
                                             "ModType": "Loot",
                                             "TriggerType": "onSearch"
                                         },
                                         "2":{
                                             "InUse": "False",
-                                            "connectedTo": "", 
+                                            "ConnectedTo": "", 
                                             "ModType": "",
                                             "TriggerType":""
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "", 
+                                            "ConnectedTo": "", 
                                             "ModType": "",
                                             "TriggerType":""
                                         }
@@ -137,45 +139,45 @@
                                 
                             },
                             "1":{
-                                "nodeID":"1",
-                                "nodeName": "LocationName2",
+                                "NodeID":"1",
+                                "NodeName": "LocationName2",
                                 "nodeType": "Location",
                                 "IncomingNode":"0",
                                 "ObjectPoints":
                                     {
                                         "1":{
                                             "InUse": "Flase",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "2":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "4":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "5":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         },
                                         "6":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": "",
                                             "SpecialCount": ""
                                         }
@@ -186,19 +188,19 @@
                                     {
                                         "1":{
                                             "InUse": "Fa;se",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ModType": "",
                                             "TriggerType": ""
                                         },
                                         "2":{
                                             "InUse": "False",
-                                            "connectedTo": "", 
+                                            "ConnectedTo": "", 
                                             "ModType": "",
                                             "TriggerType":""
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "", 
+                                            "ConnectedTo": "", 
                                             "ModType": "",
                                             "TriggerType":""
                                         }
@@ -229,9 +231,9 @@
                     ,
                     "Objects":{
                             "3":{
-                                "nodeID":"3",
+                                "NodeID":"3",
                                 "nodeType": "Object",
-                                "nodeName": "ObjectNodeName",
+                                "NodeName": "ObjectNodeName",
                                 "ObjectID": "0", 
                                 "Name": "Dresser",
                                 "Info": "This is info about a dresser.",
@@ -292,19 +294,19 @@
                                     {
                                         "1":{
                                             "InUse": "True",
-                                            "connectedTo": "11",
+                                            "ConnectedTo": "11",
                                             "ModType": "Loot",
                                             "TriggerType": "onSearch"
                                         },
                                         "2":{
                                             "InUse": "True",
-                                            "connectedTo": "12", 
+                                            "ConnectedTo": "12", 
                                             "ModType": "Combat",
                                             "TriggerType":"onAttack"
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "", 
+                                            "ConnectedTo": "", 
                                             "ModType": "",
                                             "TriggerType":""
                                         }
@@ -314,17 +316,17 @@
                                     {
                                         "1":{
                                             "InUse": "True",
-                                            "connectedTo": "9",
+                                            "ConnectedTo": "9",
                                             "ObjectType": "IF"
                                         },
                                         "2":{
                                             "InUse": "True",
-                                            "connectedTo": "10",
+                                            "ConnectedTo": "10",
                                             "ObjectType": "CombatNode"
                                         },
                                         "3":{
                                             "InUse": "False",
-                                            "connectedTo": "",
+                                            "ConnectedTo": "",
                                             "ObjectType": ""
                                         }
                                     }
@@ -334,9 +336,9 @@
                     ,
                     "Loot":{
                             "4":{
-                                "nodeID":"4",
+                                "NodeID":"4",
                                 "NodeType": "Loot",
-                                "nodeName":"LootNodeName",
+                                "NodeName":"LootNodeName",
                                 "AttatchedTo":"0", 
                                 "Repeatable": "True", 
                                 "WaitTime": "30", 

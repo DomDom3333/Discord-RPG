@@ -1,6 +1,5 @@
 const fs = require("fs");
 const UserDataReader = require("./UserDataReader.js");
-const { Console } = require("console");
 var charPath = "./Resources/Servers/0000/0001/Charfiles/samplechar.json"
 var CharFile = parseJsonFile(charPath); //ALL SERVER AND USER DATA
 
@@ -11,13 +10,13 @@ module.exports = {
     currentNodeType: CharFile.CurrentNodeType,
     currentNode: CharFile.InGameLocation,
 
-    readUser(message){
-        loadNewCharFile(message);
-        
-        this.name = CharFile.Name;
-        this.level = CharFile.Level;
-        this.currentNodeType = CharFile.CurrentNodeType;
-        this.currentNode = CharFile.InGameLocation;
+    readChar(message){
+        if(loadNewCharFile(message)){
+            this.name = CharFile.Name;
+            this.level = CharFile.Level;
+            this.currentNodeType = CharFile.CurrentNodeType;
+            this.currentNode = CharFile.InGameLocation;
+        }
     },
     getCharLevel(message){
         if(UserDataReader.CurrentChar != ""){
@@ -40,6 +39,10 @@ function loadNewCharFile(message){
     charPath = getUserFile(message);
     if(charPath != ""){
         CharFile = parseJsonFile(charPath);
+        return true;
+    }
+    else{
+        return false;
     }
 }
 

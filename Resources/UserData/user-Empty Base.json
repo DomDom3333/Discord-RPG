@@ -1,0 +1,12 @@
+{
+    "Servers": {
+        "0000": {
+            "0001": {
+            "userID": "110596839018856448",
+            "CurrentChar": "samplechar.json",
+            "CurrentCharName": "Sample",
+            "CurrentGame": "structureidea.json"
+            }
+        }
+    }
+}

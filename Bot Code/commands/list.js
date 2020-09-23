@@ -9,15 +9,18 @@ module.exports = {
         if(this.enabled){
             switch (args[1]){
                 case "games":
-                    return listGames(message,args);
+                    listGames(message,args);
                     break;
                 case "characters":
-                    return listChars(message,args);
+                    listChars(message,args);
                     break;
                 default:
-                    return "Please specify whether you want to list Games or Characters."
+                    Collector.Add("Please specify whether you want to list Games or Characters.");
                     break;
             }
+        }
+        else{
+            Collector.Add("This command is currently DISABLED");
         }
     }
 }
@@ -31,10 +34,10 @@ function listGames(message,args){
         for (i = 0; i < GameFiles.length; i++){
             msg = msg.concat(GameFiles[i], '\n');
         }
-        return (msg);
+        Collector.Add(msg);
     }
     else{
-        return "You have no avaliable Games. Use the 'Create' command to upload one";
+        Collector.Add("You have no avaliable Games. Use the 'Create' command to upload one");
     }
 }
 
@@ -45,9 +48,9 @@ function listChars(message,args){
         for (i = 0; i < CharFiles.length; i++){
             msg = msg.concat(CharFiles[i], '\n');
         }
-        return (msg);
+        Collector.Add(msg);
     }
     else{
-        return "You have no avaliable Characters. Use the 'Create' command to upload one";
+        Collector.Add("You have no avaliable Characters. Use the 'Create' command to upload one");
     }
 }

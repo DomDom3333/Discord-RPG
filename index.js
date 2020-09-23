@@ -1,25 +1,28 @@
 const Discord = require('discord.js');
 const Config = require("./Bot Code/config.json");
-const UserInfo = require("./Bot Code/UserDataReader.js");
+const Collector = require('./Bot Code/MessageCollector');
 const bot = new Discord.Client(); //initiated Discord Bot
-module.exports = {bot}; //making it avaliable to Message Center
-{
-    const TOKEN = Config.Token; //Bot token. ONLY CHANGE HERE
-    //Brackets to make it collapsable and therefore hidable for plan text
-    bot.login(TOKEN);//Logs into Bot account
+const PREFIX = Config.Prefix;
+const MessageCenter = require('./Bot Code/MessageCenter.js'); 
 
-}
-const PREFIX = Config.Prefix; //Global across Project. Should be passed through if nescessary.
-const MessageCenter = require('./Bot Code/MessageCenter.js') 
+module.exports = {bot}; //making it avaliable to Message Center
+
+bot.login(Config.Token);//Logs into Bot account
 
 bot.on('ready' , () =>{
     bot.user.setActivity("Bootloops really su.....Bootloops really suc....")
-    console.log("this bot it online")//successful startup log
+    console.log("BeeP BooP Bot Online Now")//successful startup log
 })
 
 bot.on('message', message =>{//useless legacy command. Sometimes used for debugging
-    if(message.content === "Hello"){
-        message.reply("HELLO FRIEND");
+    if(message.content === "Doper"){
+        message.reply("doper");
+    }
+    else if(message.content === "Dopest"){
+        message.reply('Dopestest');
+    }
+    else if(message.content === 'Fuck'){
+        message.reply('Fuck you too!');
     }
 })
 
@@ -28,14 +31,19 @@ bot.on('message', message =>{
         if (message.author.bot) return; //ignores itself and other bots
         if (message.content.length<=1) return;//check for length of message
         message.channel.startTyping();
-        msg = MessageCenter.entry(message,PREFIX)
-        if (msg != "NothingToSend"){
+        MessageCenter.messageHandler(message,PREFIX);
+        msg = Collector.Return();
+        if (msg != ''){
             message.channel.send(msg);
+            Collector.Clear();
         }
         message.channel.stopTyping();
     }
 })
 bot.on('error', () =>{
     MessageCenter.saveall();
-    console.log("ERROR. SAVE SUCCESSFULL. CLIENT CLOSING.");
+    console.log("ERROR. SAVE ATTEMPTED. CLIENT CLOSING.");
 })
+
+
+//Create Module that has an add function and a read function. The idea is that you can add text to it endlessly and at some point it will read that text back to you. That way a command can return complex text lines.

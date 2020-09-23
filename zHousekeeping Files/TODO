@@ -1,6 +1,1 @@
-Change If to Switch Statements where possible.
-Create Testing Character.
-Implement JSON reading function.
-
-
-Current work on: !view command
+//Create Module that has an add function and a read function. The idea is that you can add text to it endlessly and at some point it will read that text back to you. That way a command can return complex text lines.

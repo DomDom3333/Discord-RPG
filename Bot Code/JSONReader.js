@@ -1,18 +1,17 @@
 const fs = require("fs");
-const { Console } = require("console");
-const { ChangeChar } = require("./CharacterReader");
 const userPath = "./Resources/UserData/user.json"
 userData = parseJsonFile(userPath);
+const Collector = require('../MessageCollector');
 
 module.exports = {
         getCharName(message,userID){//pass in user id
-            return getCurrentCharName(serverID,userID)
+            getCurrentCharName(serverID,userID)
         },
         changeSelectedChar(message,newCharName){
             var currentChar = getCurrentCharName(message.guild.id , message.author.id);
             var charExists = checkCharExists();
             if (currentChar == newCharName){
-                return "This character is already selected"
+                Collector.Add("This character is already selected.");
             }
             else {
                 setCurrentChar()
@@ -26,12 +25,12 @@ function getCurrentCharName(serverID,userID){//retrieve current char name from u
         charPath = "./Resources/Servers/"+serverID+"/"+userID+"/"+getCurrentUserCharName(serverID,userID)+"/"+currentChar;
     }
     else{
-        return "There is no character selected. Use '!Select Character' to select an existing character";
+        Collector.Add("There is no character selected. Use '!Select Character' to select an existing character");
     }
     
 
-    console.log(Data.Servers[0]["724992148444938330"][0]["110596839018856448"].CurrentChar)//THIS WORKS!! Loop througha array points to eventually get to value?
-    console.log(Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
+    //console.log(Data.Servers[0]["724992148444938330"][0]["110596839018856448"].CurrentChar)//THIS WORKS!! Loop througha array points to eventually get to value?
+    //console.log(Data.Servers.find(itm => Object.keys(itm).includes(serverID))[serverID].find(usr => Object.keys(usr).includes(userID))[userID].CurrentChar);//FUCK THIS LINE IN PATICULAR!!! Data.Servers.[Search].ID.[Search].ID.CurrentChar
 
 };
 

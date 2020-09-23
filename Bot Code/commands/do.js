@@ -4,6 +4,7 @@ const UserReader = require("../UserDataReader.js");
 const CharacterReader = require("../CharacterReader.js");
 const GameReader = require("../GameFileReader.js");
 const GameMaster = require("../GameMaster.js");
+const Collector = require('../MessageCollector.js');
 
 module.exports = {
     name:"do",
@@ -14,27 +15,27 @@ module.exports = {
             if(UserReader.CurrentGame != ''){
                 switch(args[1]){
                     case "walk":
-                        return walk(message,args);
+                        walk(message,args);
                         break;
                     case "climb":
-                        return climb(message,args);
+                        climb(message,args);
                         break;
                     case "push":
-                        return push(message,args);
+                        push(message,args);
                         break;
                     case "search":
-                        return search(message,args);
+                        search(message,args);
                         break;
                     default:
-                        return "Please describe what you would like to do";
+                        Collector.Add("Please describe what you would like to do");
                 }
             }
             else{
-                return "Please select a game before using this command."
+                Collector.Add("Please select a game before using this command.");
             }
         }
         else{
-            return ("This command is currently DISABLED")
+            Collector.Add("This command is currently DISABLED");
         }
     }
 }
@@ -44,29 +45,32 @@ function walk(message,args){
     //So lets do this mess then
     console.log(GameReader.currentNode.ExitPoints);
     var targetObject = GameReader.currentNode.ExitPoints[args[2]]
-    if(targetObject != null){
+    if(args[2]==null){
+        Collector.Add('Where do you want to walk to? Use "search" to see whats around you.');
+    }
+    else if(targetObject != null){
         if(targetObject.VisibleBeforeUnlock == "True"){
             if(targetObject.Locked == "False"){
                 if(targetObject.Interact_Types.onWalk != null){
                     if(targetObject.Interact_Types.onWalk.GoTo != ""){
                         GameMaster.changeLocation(message)
                     }
-                    return targetObject.Interact_Types.onWalk.Response;
+                    Collector.Add(targetObject.Interact_Types.onWalk.Response); //pulls response from the object to walking to it from the game file
                 }
                 else{
-                    return "You can't " + args[1] + " this " + args[2] + ".";
+                    Collector.Add("You can't " + args[1] + " this " + args[2] + ".");
                 }
             }
             else{
-                return "This " + args[2] + " is locked."
+                Collector.Add("This " + args[2] + " is locked.");
             }
         }
         else{
-            return "There is no " + args[2] + " you can see.";
+            Collector.Add("There is no " + args[2] + " you can see.");
         }
     }
     else{
-        return "There is no '" + args[2] + "' you can see.";
+        Collector.Add("There is no '" + args[2] + "' you can see.");
     }
 }
 function climb(message,args){
@@ -78,22 +82,22 @@ function climb(message,args){
         if(targetObject.VisibleBeforeUnlock == "True"){
             if(targetObject.Locked == "False"){
                 if(targetObject.Interact_Types.onClimb != null){
-                    return targetObject.Interact_Types.onClimb.Response;
+                    Collector.Add(targetObject.Interact_Types.onClimb.Response);
                 }
                 else{
-                    return "You can't " + args[1] + " this " + args[2] + ".";
+                    Collector.Add("You can't " + args[1] + " this " + args[2] + ".");
                 }
             }
             else{
-                return "This " + args[2] + " is locked.";
+                Collector.Add("This " + args[2] + " is locked.");
             }
         }
         else{
-            return "There is no " + args[2] + " you can see.";
+            Collector.Add("There is no " + args[2] + " you can see.");
         }
     }
     else{
-        return "There is no " + args[2] + " you can see.";
+        Collector.Add("There is no " + args[2] + " you can see.");
     }
 }
 function push(message,args){
@@ -102,27 +106,27 @@ function push(message,args){
         if(targetObject.VisibleBeforeUnlock == "True"){
             if(targetObject.Locked == "False"){
                 if(targetObject.Interact_Types.onPush != null){
-                    return targetObject.Interact_Types.onPush.Response;
+                    Collector.Add(targetObject.Interact_Types.onPush.Response);
                 }
                 else{
-                    return "You can't " + args[1] + " this " + args[2] + ".";
+                    Collector.Add("You can't " + args[1] + " this " + args[2] + ".");
                 }
             }
             else{
-                return "This " + args[2] + " is locked.";
+                Collector.Add("This " + args[2] + " is locked.");
             }
         }
         else{
-            return "There is no " + args[2] + " you can see.";
+            Collector.Add("There is no " + args[2] + " you can see.");
         }
     }
     else{
-        return "There is no " + args[2] + " you can see.";
+        Collector.Add("There is no " + args[2] + " you can see.");
     }
 }
 function search(message,args){
     //contact character and have it return its location
     //contact world and return options
     //pass options to story module
-    return "You have Searched";
+    Collector.Add(GameReader.currentSearchText);
 }

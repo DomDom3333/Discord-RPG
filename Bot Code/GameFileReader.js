@@ -5,18 +5,20 @@ const fs = require("fs");
 const characterInfo = require("./CharacterReader.js");
 const UserDataReader = require("./UserDataReader.js");
 var gamePath = "./Resources/Servers/0000/0001/GameFiles/structureidea/structureidea.json"
-var GameFile = parseJsonFile(gamePath); //ALL SERVER AND USER DATA
+//var GameFile = parseJsonFile(gamePath); //ALL SERVER AND USER DATA [DEPRECIATED]
+var GameFile = require('../Resources/Servers/0000/0001/GameFiles/structureidea/structureidea.json');//All Game Data
 
 module.exports = {
-
     currentNode: GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode],
-    currentNodeName: GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].nodeName,
+    currentNodeName: GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].NodeName,
+    currentSearchText: GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].LookText,
 
     updateGame(message){
-        loadNewGameFile(message);
-        
-        this.currentNode = GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode];
-        this.currentNodeName = GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].nodeName;
+        if(loadNewGameFile(message)){
+            this.currentNode = GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode];
+            this.currentNodeName = GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].NodeName;
+            this.currentSearchText = GameFile.Squares.G1x1.nodes[characterInfo.currentNodeType][characterInfo.currentNode].LookText;
+        }
     },
     Save(){
         writeChanges();
@@ -27,6 +29,10 @@ function loadNewGameFile(message){
     gamePath = getGameFile(message);
     if(gamePath != ""){
         GameFile = parseJsonFile(gamePath);
+        return true;
+    }
+    else{
+        return false;
     }
 }
 function getGameFile(message){
@@ -34,7 +40,7 @@ function getGameFile(message){
     serverID = message.guild.id;
     selectedGame = UserDataReader.CurrentGame
     if(selectedGame != ""){
-        return "./Resources/Servers/" + serverID + "/" + userID + "/GameFiles/" + selectedGame.substring(0,selectedGame.length-5) + "/" + selectedGame ;
+        return "./Resources/Servers/" + serverID + "/" + userID + "/GameFiles/" + selectedGame + "/" + selectedGame + '.json' ;
     }
     else{
         return "";

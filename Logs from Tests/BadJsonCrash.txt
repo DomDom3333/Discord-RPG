@@ -1,0 +1,43 @@
+this bot it online
+New message from "BeardOfGinge" (ID: 231919448007639041)
+message: +weme
+New message from "BeardOfGinge" (ID: 231919448007639041)
+message: +help
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .
+New message from "BeardOfGinge" (ID: 231919448007639041)
+message: +do +create +list +myname
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .
+New message from "Gibs🌈" (ID: 110629004008005632)
+message: +create
+Adding new User: 633219185006346251
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+User added successfully
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .
+New message from "Gibs🌈" (ID: 110629004008005632)
+message: +create game
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .
+New message from "Gibs🌈" (ID: 110629004008005632)
+message: +create game
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .
+New message from "Gibs🌈" (ID: 110629004008005632)
+message: +create game test
+Attempting to write to UserFile . . .
+Success writing to UserFile!
+No Char File to write to. Skipping . . .
+No Game File to write to. Skipping . . .

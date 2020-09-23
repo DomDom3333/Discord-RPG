@@ -5,6 +5,7 @@
 const UserInfo = require("../UserDataReader.js");
 const CharInfo = require("../CharacterReader.js");
 const GameInfo = require("../GameFileReader.js");
+const Collector = require('../MessageCollector');
 
 module.exports = {
     name: 'view',
@@ -14,17 +15,17 @@ module.exports = {
         if(this.enabled){
             switch (args[1]){
                 case "current":
-                    return viewCurrent(message,args);
+                    viewCurrent(message,args);
                     break;
                 case "party":
-                    return viewParty(message,args);
+                    viewParty(message,args);
                     break;
                 default:
-                    return ("Please state what you want to view (Current/Party)");
+                    Collector.Add("Please state what you want to view (Current/Party)");
                 }
         }
         else{
-            return ("This command is currently DISABLED");
+            Collector.Add("This command is currently DISABLED");
         }
     }
 }
@@ -36,18 +37,18 @@ function viewCurrent(message,args){
             var CharID = UserInfo.getCharID();
             break;
         case "character":
-            return viewCurrentCharacter(message,args);
+            Collector.Add(viewCurrentCharacter(message,args));
             break;
         case "game":
-            return "This is the Game your current character is in.";
+            Collector.Add("This is the Game your current character is in.");
             break;
         default:
-            return "Please state what aspect you want to view (current character/game/all)"
+            Collector.Add("Please state what aspect you want to view (current character/game/all).");
     }
 }
 
 function viewParty(message,args){
-    return "Not yet implemented."
+    Collector.Add("Not yet implemented.");
 }
 
 function viewCurrentCharacter(message,args){
@@ -56,43 +57,42 @@ function viewCurrentCharacter(message,args){
             case "location":
                 if(UserInfo.CurrentGame != ""){
                     if(UserInfo.CurrentChar != ""){
-                        return "You are at node number: " + GameInfo.currentNode + ", with the name: " + GameInfo.currentNode.nodeName;
+                        Collector.Add("You are at node number: " + GameInfo.currentNode + ", with the name: " + GameInfo.currentNode.nodeName);
                     }
                     else{
-                        return "You have no valid Character selected. Please use the 'select' command to select a character before using this command.";
+                        Collector.Add("You have no valid Character selected. Please use the 'select' command to select a character before using this command.");
                     }
                 }
                 else{
-                    return "You have no valid Game selected. Please use the 'select' command to select a game before using this command."
+                    Collector.Add("You have no valid Game selected. Please use the 'select' command to select a game before using this command.");
                 }
                 break;
             case "name":
-                return UserInfo.getCharName(message);
+                Collector.Add(UserInfo.getCharName(message));
                 break;
             case "id":
-                return UserInfo.getCharID();
+                Collector.Add(UserInfo.getCharID());
                 break;
             case "level":
-                return CharInfo
-            .getCharLevel(message);
+                Collector.Add(CharInfo.getCharLevel(message));
                 break;
             case "type":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "hp":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "ac":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "initiativemodifier":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "initiativeadvantage":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "speed":
-                return "Coming soon";
+                Collector.Add("Coming soon");
                 break;
             case "all":
                 //Here, grab all important data points an append them to fullText variable. Then return fullText.
@@ -100,10 +100,10 @@ function viewCurrentCharacter(message,args){
                 fullText += ("Selected Character: " + UserInfo.getCharName(message,message.author.id) + "\n");
                 //fullText += "Character ID: " + UserInfo.getCharID() + "\n";
                 fullText += ("Active Game: " + UserInfo.getGame(message) + "\n");
-                return fullText;
+                Collector.Add(fullText);
                 break;
             default:
-                return "Please define what you would like to view about your current character (eg: 'Level') "
+                Collector.Add("Please define what you would like to view about your current character (eg: 'Level').");
 
         }
     }
